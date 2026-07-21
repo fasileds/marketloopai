@@ -8,7 +8,7 @@ import { getSiteContent, getText } from "@/lib/content/get-site-content";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with the MarketLoopAI team.",
+  description: "Get in touch with the MarketLoopAI team about AI content, ranking, humanization, and ad management.",
 };
 
 export default async function ContactPage() {

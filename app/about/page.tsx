@@ -11,24 +11,26 @@ import { getSiteContent, getText } from "@/lib/content/get-site-content";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "We're building MarketLoopAI to give every business an AI-powered marketing team — content, video, publishing, and ads in one platform.",
+    "We're building MarketLoopAI so one idea can become ranked, humanized, platform-ready content and advertising creative — without a dozen disconnected tools.",
 };
 
 const VALUES = [
   {
-    title: "Speed without sloppiness",
-    description: "AI should make marketing faster, not lower quality. We optimize for both.",
+    title: "Human first, AI-generated is invisible",
+    description:
+      "Every variation runs through humanization and AI judging before it ever reaches you. If it reads like a bot wrote it, it doesn't win.",
     icon: Rocket,
   },
   {
-    title: "One platform, not ten tabs",
+    title: "Ranked, not just generated",
     description:
-      "Content, video, publishing, and ads shouldn't require a dozen disconnected tools.",
+      "Generating nine versions of something is easy. Knowing which one is actually good is the hard part — so we score and rank, and surface the strongest one first.",
     icon: Layers,
   },
   {
-    title: "Built with our users",
-    description: "Every feature on our roadmap is shaped by direct feedback from early access partners.",
+    title: "You decide where automation ends",
+    description:
+      "From a fully produced video ad to a scene-by-scene storyboard you shoot yourself, you choose how much control to hand over — never all-or-nothing.",
     icon: Users2,
   },
   {
@@ -73,7 +75,7 @@ export default async function AboutPage() {
                 value={getText(
                   content,
                   "about.story.title",
-                  "Marketing teams are stretched across too many tools",
+                  "One idea deserves better than one draft",
                 )}
               />
             </h2>
@@ -85,7 +87,7 @@ export default async function AboutPage() {
                   value={getText(
                     content,
                     "about.story.paragraph.0",
-                    "Most businesses juggle a content tool, a video editor, a scheduler, and separate ad managers for every platform — and still struggle to keep up. We think that's backwards.",
+                    "Most businesses juggle a content tool, a video editor, a scheduler, and separate ad managers for every platform — and still end up publishing the first draft because there's no time to make more. We think that's backwards.",
                   )}
                 />
               </p>
@@ -96,7 +98,7 @@ export default async function AboutPage() {
                   value={getText(
                     content,
                     "about.story.paragraph.1",
-                    "MarketLoopAI was started to build the platform we wished existed: point it at your website, and it understands your brand well enough to generate content, produce video, publish everywhere, and run ad campaigns — all from one place.",
+                    "MarketLoopAI was started to build the platform we wished existed: give it one idea, a prompt, or a piece of existing content, and it generates multiple variations, runs each through humanization and AI judging, and ranks them so the strongest one surfaces first — then adapts it for LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram in each platform's own voice. For advertising, that same idea becomes a scene-by-scene video script, a produced video ad where supported, and campaigns you can manage across TikTok Ads, Snapchat Ads, X Ads, Google Ads, and Facebook/Meta Ads.",
                   )}
                 />
               </p>
@@ -114,7 +116,7 @@ export default async function AboutPage() {
             </div>
           </div>
 
-          <dl className="glass noise-overlay grid grid-cols-3 gap-4 rounded-2xl p-8">
+          <dl className="glass noise-overlay grid grid-cols-3 gap-2 rounded-2xl p-4 sm:gap-4 sm:p-8">
             {STATS.map((stat, index) => {
               const value = getText(content, `about.stats.${index}.value`, stat.value);
               const label = getText(content, `about.stats.${index}.label`, stat.label);

@@ -25,32 +25,32 @@ const ROADMAP_ITEMS = [
   },
   {
     id: "ai-content",
-    title: "AI content generation",
-    description: "Turn a website or prompt into on-brand articles and captions.",
+    title: "AI content repurposing, humanization & ranking",
+    description: "Turn one idea into multiple content variations, then score, rank, and surface the strongest first.",
     status: "in-progress" as const,
   },
   {
     id: "ai-video",
-    title: "AI video generation",
-    description: "Produce product and social videos without a camera crew.",
+    title: "AI video ad generation & scene-by-scene storyboards",
+    description: "Turn a concept into a scripted video ad or a detailed scene-by-scene storyboard.",
     status: "in-progress" as const,
   },
   {
     id: "publishing",
-    title: "Multi-channel publishing",
-    description: "Schedule and publish to TikTok, Instagram, LinkedIn, X, and more.",
+    title: "Multi-platform content adaptation",
+    description: "Adapt winning content for LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram.",
     status: "in-progress" as const,
   },
   {
     id: "ad-campaigns",
-    title: "Ad campaign management",
-    description: "Launch and manage TikTok Ads, Snapchat Ads, X Ads, and Google Ads.",
+    title: "Multi-platform ad management",
+    description: "Connect and manage campaigns across TikTok Ads, Snapchat Ads, X Ads, Google Ads, and Facebook/Meta Ads.",
     status: "planned" as const,
   },
   {
     id: "analytics",
     title: "Unified analytics dashboard",
-    description: "See performance across every channel in one place.",
+    description: "See content and ad performance across every connected platform in one place.",
     status: "planned" as const,
   },
   {
@@ -110,7 +110,7 @@ export default async function RoadmapPage() {
         description={getText(
           content,
           "pagehero.roadmap.description",
-          "Vote on what matters most to you — it helps us prioritize. Votes are stored in your browser, not tied to an account yet.",
+          "Vote on what matters most for AI content repurposing, humanization, and multi-platform ad management — it helps us prioritize. Votes are stored in your browser, not tied to an account yet.",
         )}
         descriptionKey="pagehero.roadmap.description"
       />

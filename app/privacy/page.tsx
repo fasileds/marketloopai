@@ -79,7 +79,7 @@ const RAW_SECTIONS: {
     id: "social-integrations",
     heading: "Social Media Integrations",
     content: [
-      "Once MarketLoopAI launches its publishing and advertising features, connecting social or ad platform accounts (such as TikTok, Instagram, LinkedIn, X, Facebook, YouTube, or Google Ads) will require additional authorization scoped to those platforms. We will update this policy with specifics before those integrations go live.",
+      "Once MarketLoopAI launches its multi-platform content and advertising features, connecting content platform accounts (such as LinkedIn, TikTok, Snapchat, X, Facebook, or Instagram) or ad platform accounts (such as TikTok Ads, Snapchat Ads, X Ads, Google Ads, or Facebook/Meta Ads) will require additional authorization scoped to those platforms. We will update this policy with specifics before those integrations go live.",
     ],
   },
   {
@@ -93,7 +93,7 @@ const RAW_SECTIONS: {
     id: "ai-processing",
     heading: "AI Processing and Generated Content",
     content: [
-      "Product features that generate content, video, or ad creative using AI will process the inputs you provide (such as website content or prompts) through our AI infrastructure and, where applicable, third-party AI providers, solely to produce the output you request.",
+      "Product features that repurpose, generate, humanize, and rank content, and produce video ad creative, using AI will process the inputs you provide (such as a prompt, product description, or existing content) through our AI infrastructure and, where applicable, third-party AI providers, solely to produce the output you request.",
     ],
   },
   {

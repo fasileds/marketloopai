@@ -1,4 +1,4 @@
-import { BarChart3, FileText, MessagesSquare, PenSquare, Scale, ShieldAlert, Users } from "lucide-react";
+import { BarChart3, FileText, MessagesSquare, PenSquare, Scale, ShieldAlert, Users, Video } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -18,6 +18,7 @@ const NAV = [
   { label: "Blog", href: "/admin/blog", icon: FileText },
   { label: "Legal pages", href: "/admin/legal", icon: Scale },
   { label: "Testimonials", href: "/admin/testimonials", icon: MessagesSquare },
+  { label: "TikTok Videos", href: "/admin/tiktok", icon: Video },
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

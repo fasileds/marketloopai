@@ -1,8 +1,23 @@
 import { customAlphabet } from "nanoid";
 import { NextResponse } from "next/server";
 
+import { waitlistWelcomeEmail } from "@/lib/email/waitlist-welcome";
+import { getResendClient, RESEND_WELCOME_FROM } from "@/lib/resend/client";
 import { createServiceRoleClient } from "@/lib/supabase/server";
 import { waitlistSchema } from "@/lib/validations/waitlist";
+
+async function sendWelcomeEmail(name: string, email: string, referralCode: string) {
+  const resend = getResendClient();
+  if (!resend) return; // Resend not configured yet — skip silently.
+
+  try {
+    const { subject, html } = waitlistWelcomeEmail({ siteName: "MarketLoopAI", name, referralCode });
+    await resend.emails.send({ from: RESEND_WELCOME_FROM, to: email, subject, html });
+  } catch (err) {
+    // Never fail the signup because the welcome email didn't go out.
+    console.error("waitlist welcome email failed", err);
+  }
+}
 
 // Unambiguous alphabet (no 0/O/1/I) so referral codes are easy to read aloud/type.
 const generateReferralCode = customAlphabet("23456789ABCDEFGHJKLMNPQRSTUVWXYZ", 7);
@@ -62,8 +77,7 @@ export async function POST(request: Request) {
       .single();
 
     if (!error) {
-      // TODO(resend): once RESEND_API_KEY is configured, send a double
-      // opt-in / welcome email here using `email` and `data.referral_code`.
+      await sendWelcomeEmail(name, email.toLowerCase(), data.referral_code);
       return NextResponse.json({ referralCode: data.referral_code }, { status: 201 });
     }
 

@@ -59,7 +59,7 @@ const RAW_SECTIONS: {
     id: "ai-generated-content",
     heading: "AI Generated Content",
     content: [
-      "When AI content and video generation features launch, output is generated based on your inputs. You're responsible for reviewing generated content before publishing it, and for ensuring your use complies with applicable law and third-party platform policies.",
+      "When AI content repurposing, humanization, ranking, and video ad generation features launch, output is generated based on your inputs. You're responsible for reviewing generated content before publishing it, and for ensuring your use complies with applicable law and third-party platform policies.",
     ],
   },
   {
@@ -115,7 +115,7 @@ const RAW_SECTIONS: {
     id: "advertising-integrations",
     heading: "Advertising Integrations",
     content: [
-      "Ad campaign management features will let you connect ad accounts (e.g., TikTok Ads, Snapchat Ads, X Ads, Google Ads). You remain responsible for your ad spend, compliance with platform advertising policies, and campaign content.",
+      "Multi-platform ad management features will let you connect ad accounts (e.g., TikTok Ads, Snapchat Ads, X Ads, Google Ads, Facebook/Meta Ads). You remain responsible for your ad spend, compliance with platform advertising policies, and campaign content.",
     ],
   },
   {

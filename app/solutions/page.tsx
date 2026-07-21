@@ -9,7 +9,7 @@ import { getSiteContent, getText } from "@/lib/content/get-site-content";
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "See how MarketLoopAI adapts to Shopify stores, SaaS companies, personal brands, agencies, and small businesses.",
+    "See how MarketLoopAI generates, ranks, and adapts content and ad creative for e-commerce brands, SaaS companies, personal brands, agencies, and small businesses.",
 };
 
 export default async function SolutionsPage() {

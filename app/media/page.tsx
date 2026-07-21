@@ -4,39 +4,42 @@ import { Megaphone, MonitorPlay, Rss, Sparkles } from "lucide-react";
 import { EditableText } from "@/components/editing/editable-text";
 import { PageHero } from "@/components/layout/page-hero";
 import { WaitlistCtaBand } from "@/components/sections/waitlist-cta-band";
+import { TikTokVideoGrid } from "@/components/media/tiktok-video-grid";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
+import { getPublishedTikTokVideos } from "@/lib/tiktok/get-videos";
 
 export const metadata: Metadata = {
   title: "Media Center",
   description:
-    "Product demos, tutorials, and announcements from MarketLoopAI — launching alongside the product.",
+    "Product demos, feature walkthroughs, customer stories, and platform updates from MarketLoopAI — launching alongside the product.",
 };
 
 const CATEGORIES = [
   {
     title: "Product Demos",
-    description: "Walkthroughs of AI content, video generation, and publishing in action.",
+    description: "See content repurposing, humanization, ranking, and video ad generation in action.",
     icon: MonitorPlay,
   },
   {
-    title: "Tutorials",
-    description: "Step-by-step guides for getting the most out of MarketLoopAI.",
+    title: "Feature Walkthroughs",
+    description: "Step-by-step guides to getting the most out of MarketLoopAI's tools.",
     icon: Sparkles,
   },
   {
-    title: "Announcements",
-    description: "New features, launch milestones, and roadmap updates.",
+    title: "Customer Stories",
+    description: "How brands, agencies, and creators use MarketLoopAI to create and advertise.",
     icon: Megaphone,
   },
   {
-    title: "Social Clips",
-    description: "Short-form video from our YouTube, TikTok, and Instagram channels.",
+    title: "Platform Updates",
+    description: "New features, integrations, and roadmap milestones.",
     icon: Rss,
   },
 ];
 
 export default async function MediaPage() {
   const content = await getSiteContent();
+  const videos = await getPublishedTikTokVideos();
 
   return (
     <>
@@ -48,10 +51,18 @@ export default async function MediaPage() {
         description={getText(
           content,
           "media.pagehero.description",
-          "Our media library — product demos, tutorials, and announcement videos — goes live alongside the product.",
+          "Our media library — product demos, feature walkthroughs, customer stories, and platform updates — goes live alongside the product.",
         )}
         descriptionKey="media.pagehero.description"
       />
+
+      {videos.length > 0 && (
+        <section className="px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[100rem]">
+            <TikTokVideoGrid videos={videos} />
+          </div>
+        </section>
+      )}
 
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-[100rem] gap-4 sm:grid-cols-2 lg:grid-cols-4">

@@ -55,7 +55,7 @@ export default async function ReferralPage() {
         description={getText(
           content,
           "referral.pagehero.description",
-          "Every waitlist signup gets a unique referral code. The more people who join through yours, the higher you rank — and the sooner you get early access.",
+          "Every waitlist signup gets a unique referral code. The more people who join through yours, the higher you rank — and the sooner you get early access to AI content repurposing, humanization, ranking, and multi-platform ad management.",
         )}
         descriptionKey="referral.pagehero.description"
       />

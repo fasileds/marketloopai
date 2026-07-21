@@ -9,7 +9,7 @@ import { getSiteContent, getText } from "@/lib/content/get-site-content";
 export const metadata: Metadata = {
   title: "Integrations",
   description:
-    "MarketLoopAI connects to TikTok, Snapchat, LinkedIn, Instagram, Facebook, X, Google Ads, Shopify, WordPress, WooCommerce, YouTube, and more.",
+    "MarketLoopAI publishes to LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram, and manages ad campaigns across TikTok Ads, Snapchat Ads, X Ads, Google Ads, and Facebook/Meta Ads.",
 };
 
 export default async function IntegrationsPage() {

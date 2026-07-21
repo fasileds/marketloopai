@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BarChart3, Clapperboard, Megaphone, Wand2 } from "lucide-react";
-import Link from "next/link";
 
+import { FeaturedPostCard, PostCard, type PostCardData } from "@/components/blog/post-card";
 import { EditableText } from "@/components/editing/editable-text";
 import { PageHero } from "@/components/layout/page-hero";
 import { WaitlistCtaBand } from "@/components/sections/waitlist-cta-band";
@@ -11,53 +11,43 @@ import { createServiceRoleClient } from "@/lib/supabase/server";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Guides and updates on AI content, video, publishing, and ad campaigns — launching alongside MarketLoopAI.",
+    "Guides and updates on AI content repurposing, humanization, ranking, and multi-platform ad creative — launching alongside MarketLoopAI.",
 };
 
 export const revalidate = 60;
 
 const CATEGORIES = [
   {
-    title: "AI Content Strategy",
-    description: "How to use AI to plan and scale content without losing your brand voice.",
+    title: "AI Content Repurposing",
+    description: "How to turn one idea into content variations for every platform without losing your voice.",
     icon: Wand2,
   },
   {
-    title: "AI Video",
-    description: "Practical guides for generating product and social video with AI.",
+    title: "Humanization & Content Ranking",
+    description: "Inside the judging layer that scores, ranks, and surfaces your strongest content.",
+    icon: BarChart3,
+  },
+  {
+    title: "Video Ad Creative",
+    description: "Guides for turning a concept into scene-by-scene scripts and finished video ads.",
     icon: Clapperboard,
   },
   {
-    title: "Paid Ads",
-    description: "Playbooks for TikTok, Snapchat, X, and Google Ads campaigns.",
+    title: "Multi-Platform Ad Management",
+    description: "Playbooks for connecting and running campaigns across TikTok, Snapchat, X, Google, and Meta Ads.",
     icon: Megaphone,
-  },
-  {
-    title: "Performance & Analytics",
-    description: "Making sense of marketing data across every channel.",
-    icon: BarChart3,
   },
 ];
 
-type Post = {
-  slug: string;
-  title: string;
-  excerpt: string | null;
-  category: string | null;
-  author_name: string;
-  published_at: string | null;
-  cover_image_url: string | null;
-};
-
-async function getPosts(): Promise<Post[]> {
+async function getPosts(): Promise<PostCardData[]> {
   try {
     const supabase = createServiceRoleClient();
     const { data } = await supabase
       .from("blog_posts")
-      .select("slug, title, excerpt, category, author_name, published_at, cover_image_url")
+      .select("slug, title, excerpt, content, category, author_name, published_at, cover_image_url")
       .eq("published", true)
       .order("published_at", { ascending: false });
-    return (data as Post[]) ?? [];
+    return (data as PostCardData[]) ?? [];
   } catch {
     return [];
   }
@@ -68,6 +58,8 @@ export default async function BlogPage() {
   const content = await getSiteContent();
 
   if (posts.length > 0) {
+    const [featured, ...rest] = posts;
+
     return (
       <>
         <PageHero
@@ -76,42 +68,21 @@ export default async function BlogPage() {
           title={getText(
             content,
             "blog.pagehero.withposts.title",
-            "Guides on AI content, video, and ad campaigns",
+            "Guides on AI content repurposing, humanization, and ad creative",
           )}
           titleKey="blog.pagehero.withposts.title"
         />
         <section className="px-4 pb-24 sm:px-6 lg:px-8">
-          <div className="mx-auto grid max-w-[100rem] gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="glass flex flex-col gap-3 overflow-hidden rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1"
-              >
-                {post.cover_image_url && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={post.cover_image_url}
-                    alt=""
-                    className="-mx-6 -mt-6 mb-1 aspect-video w-[calc(100%+3rem)] object-cover"
-                  />
-                )}
-                {post.category && (
-                  <span className="w-fit rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-primary">
-                    {post.category}
-                  </span>
-                )}
-                <h2 className="text-base font-medium">{post.title}</h2>
-                {post.excerpt && (
-                  <p className="text-sm text-muted-foreground">{post.excerpt}</p>
-                )}
-                <p className="mt-auto text-xs text-muted-foreground">
-                  {post.author_name}
-                  {post.published_at &&
-                    ` · ${new Date(post.published_at).toLocaleDateString()}`}
-                </p>
-              </Link>
-            ))}
+          <div className="mx-auto max-w-[100rem]">
+            <FeaturedPostCard post={featured} />
+
+            {rest.length > 0 && (
+              <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {rest.map((post) => (
+                  <PostCard key={post.slug} post={post} />
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </>
@@ -128,7 +99,7 @@ export default async function BlogPage() {
         description={getText(
           content,
           "blog.pagehero.empty.description",
-          "We're writing guides on AI content, video, and ad campaigns to launch alongside the product. Here's what to expect.",
+          "We're writing guides on AI content repurposing, humanization, ranking, and multi-platform ad creative to launch alongside the product. Here's what to expect.",
         )}
         descriptionKey="blog.pagehero.empty.description"
       />

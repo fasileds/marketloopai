@@ -8,7 +8,7 @@ import { useState } from "react";
 import { EditableText } from "@/components/editing/editable-text";
 
 const SOLUTIONS_ICONS: Record<string, LucideIcon> = {
-  shopify: ShoppingBag,
+  ecommerce: ShoppingBag,
   saas: Rocket,
   personal: User,
   agencies: Users,

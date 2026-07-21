@@ -30,7 +30,7 @@ export const CONTENT_FIELDS: ContentField[] = [
     "footer.tagline",
     "Footer tagline",
     "textarea",
-    "Turn your website into content, videos, and high-performing ad campaigns — from one intelligent platform.",
+    "Turn one idea into humanized, platform-ready content and advertising creative — for LinkedIn, TikTok, Snapchat, X, Facebook, Instagram, and more.",
   ),
   field(
     "Brand",
@@ -46,34 +46,34 @@ export const CONTENT_FIELDS: ContentField[] = [
     "home.hero.eyebrow",
     "Eyebrow badge text",
     "text",
-    "Now building the future of AI marketing",
+    "AI content, humanized and ranked before you ever see it",
   ),
-  field("Home / Hero", "home.hero.headline_prefix", "Headline (first part)", "text", "Turn Your Website Into"),
+  field("Home / Hero", "home.hero.headline_prefix", "Headline (first part)", "text", "One Idea In."),
   field(
     "Home / Hero",
     "home.hero.headline_highlight",
     "Headline (highlighted part)",
     "textarea",
-    "Content, Videos, and High-Performing Ad Campaigns",
+    "Content and Ad Creative Out.",
   ),
   field(
     "Home / Hero",
     "home.hero.subheadline",
     "Subheadline",
     "textarea",
-    "Generate AI content, create product videos, publish everywhere, and launch ad campaigns from one intelligent platform.",
+    "Give MarketLoopAI a sentence, a prompt, or something you've already written. It generates multiple platform-ready variations, scores each one for how natural and human it feels, and hands you the strongest version first — for LinkedIn, TikTok, Snapchat, X, Facebook, Instagram, and your ad campaigns.",
   ),
   field("Home / Hero", "home.hero.cta_primary", "Primary button label", "text", "Join Waitlist"),
-  field("Home / Hero", "home.hero.cta_secondary", "Secondary button label", "text", "Watch Demo"),
+  field("Home / Hero", "home.hero.cta_secondary", "Secondary button label", "text", "See How It Works"),
   field(
     "Home / Hero",
     "home.hero.stats",
     "Stats row (JSON array of {value, label})",
     "json",
     json([
-      { value: "10x", label: "Faster content production" },
-      { value: "40+", label: "Channels & ad platforms" },
-      { value: "24/7", label: "AI-powered publishing" },
+      { value: "Up to 9", label: "Variations generated per post" },
+      { value: "6+", label: "Content & ad platforms supported" },
+      { value: "1", label: "Idea needed to start" },
     ]),
   ),
 
@@ -84,27 +84,33 @@ export const CONTENT_FIELDS: ContentField[] = [
     "Explore cards (JSON array of {title, description})",
     "json",
     json([
-      { title: "Features", description: "AI content, video, publishing, and ad campaign management." },
-      { title: "Solutions", description: "Built for Shopify stores, SaaS, personal brands, and agencies." },
-      { title: "Integrations", description: "TikTok, Instagram, Google Ads, Shopify, and more." },
+      {
+        title: "Features",
+        description: "AI content repurposing, humanization, ranking, and video ad generation.",
+      },
+      {
+        title: "Solutions",
+        description: "Built for e-commerce brands, SaaS startups, agencies, and personal brands.",
+      },
+      { title: "Integrations", description: "TikTok, Snapchat, X, Facebook, Instagram, LinkedIn, and Google Ads." },
     ]),
   ),
 
   // Home — workflow
-  field("Home / Workflow", "home.workflow.eyebrow", "Eyebrow", "text", "Workflow"),
+  field("Home / Workflow", "home.workflow.eyebrow", "Eyebrow", "text", "How it works"),
   field(
     "Home / Workflow",
     "home.workflow.heading",
     "Heading",
     "text",
-    "From website to optimized campaign",
+    "From one idea to ranked, platform-ready content",
   ),
   field(
     "Home / Workflow",
     "home.workflow.description",
     "Description",
     "textarea",
-    "A fully automated loop that keeps improving the longer you use it.",
+    "A structured pipeline that generates, humanizes, ranks, and adapts your content before it ever reaches you.",
   ),
   field(
     "Home / Workflow",
@@ -112,13 +118,37 @@ export const CONTENT_FIELDS: ContentField[] = [
     "Steps (JSON array of {title, description})",
     "json",
     json([
-      { title: "Website", description: "Connect your site as the source of truth." },
-      { title: "AI Analysis", description: "We learn your brand voice, offers, and audience." },
-      { title: "Generate", description: "Posts, videos, and ad creative generated automatically." },
-      { title: "Publish", description: "Pushed to every channel, formatted and scheduled." },
-      { title: "Launch Ads", description: "Campaigns go live across TikTok, Snap, X, Google." },
-      { title: "Analytics", description: "Unified performance data as it comes in." },
-      { title: "Optimize", description: "AI reallocates spend toward what's working." },
+      {
+        title: "Give us your idea",
+        description: "Start with a sentence, a prompt, a product description, or content you already have.",
+      },
+      {
+        title: "Generate multiple variations",
+        description: "MarketLoopAI generates several distinct versions of your content — up to nine per post.",
+      },
+      {
+        title: "Humanize & evaluate",
+        description: "Every version is scored for how natural, authentic, and human it feels, not just grammar.",
+      },
+      {
+        title: "Rank the best content",
+        description: "Versions are ranked by humanization and quality score, so the strongest one surfaces first.",
+      },
+      {
+        title: "Adapt for every platform",
+        description:
+          "The winning version is reshaped for LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram — in each platform's own style.",
+      },
+      {
+        title: "Create video or scene plans",
+        description:
+          "Generate a full AI video ad where supported, or get a scene-by-scene storyboard your team can shoot.",
+      },
+      {
+        title: "Launch and manage campaigns",
+        description:
+          "Organize your ad campaigns across TikTok Ads, Snapchat Ads, X Ads, Google Ads, and Facebook/Meta Ads.",
+      },
     ]),
   ),
 
@@ -131,23 +161,24 @@ export const CONTENT_FIELDS: ContentField[] = [
     "json",
     json([
       {
-        question: "When does MarketLoopAI launch?",
+        question: "How is this different from a generic AI writing tool?",
         answer:
-          "We're in active development. Joining the waitlist is the best way to get early access and updates as we get closer to launch.",
+          "Instead of generating one piece of content and showing it to you right away, MarketLoopAI generates multiple variations, scores each one for how natural and human it feels, and shows you the strongest version first — while still giving you access to every other variation.",
       },
       {
-        question: "What platforms can I publish and advertise on?",
+        question: "What platforms can I create content for?",
         answer:
-          "TikTok, Instagram, LinkedIn, X, Facebook, YouTube, and ad platforms including TikTok Ads, Snapchat Ads, X Ads, and Google Ads, with more integrations planned.",
+          "Content generation and repurposing currently target LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram, with more channels planned. Advertising workflows connect to TikTok Ads, Snapchat Ads, X Ads, Google Ads, and Facebook/Meta Ads.",
       },
       {
-        question: "Do I need any design or video editing experience?",
+        question: "Can it generate a full video ad, or just a script?",
         answer:
-          "No. MarketLoopAI generates on-brand content, video, and ad creative for you — you review and publish.",
+          "Both, depending on the platform and campaign. Where AI video generation is supported and authorized, MarketLoopAI can prepare a video ad up to about three minutes. If you'd rather produce it yourself, you get a detailed scene-by-scene storyboard — visual direction, on-screen text, voiceover, and calls-to-action.",
       },
       {
-        question: "Can my whole team use it?",
-        answer: "Yes. Team collaboration, shared workspaces, and approval workflows are built in from day one.",
+        question: "Do I need design or video experience to use it?",
+        answer:
+          "No. MarketLoopAI produces ready-to-use content and creative direction — you review, edit if you'd like, and publish.",
       },
       {
         question: "How does the referral program work?",
@@ -163,14 +194,14 @@ export const CONTENT_FIELDS: ContentField[] = [
     "home.waitlist_cta.heading",
     "Heading",
     "text",
-    "Be first to experience the future of AI marketing",
+    "Be first to turn one idea into content across every platform",
   ),
   field(
     "Home / Waitlist CTA",
     "home.waitlist_cta.description",
     "Description",
     "textarea",
-    "Join the waitlist for early access, launch pricing, and a front-row seat as we build.",
+    "Join the waitlist for early access to AI content repurposing, humanization, ranking, and multi-platform ad management.",
   ),
 
   // Page hero banners (About / Pricing / Features / Solutions / Integrations / Blog / Contact)
@@ -180,24 +211,30 @@ export const CONTENT_FIELDS: ContentField[] = [
     "pagehero.about.title",
     "Title",
     "text",
-    "We're building the marketing team every business deserves",
+    "We're building the content team every business deserves",
   ),
   field(
     "About page",
     "pagehero.about.description",
     "Description",
     "textarea",
-    "MarketLoopAI exists because great marketing shouldn't require a dozen tools, a big budget, or a full-time team.",
+    "MarketLoopAI exists because turning one idea into great content for six different platforms shouldn't take six different tools — or a full content team.",
   ),
 
   field("Pricing page", "pagehero.pricing.eyebrow", "Eyebrow", "text", "Pricing"),
-  field("Pricing page", "pagehero.pricing.title", "Title", "text", "Simple pricing, built to scale with you"),
+  field(
+    "Pricing page",
+    "pagehero.pricing.title",
+    "Title",
+    "text",
+    "Simple pricing, built to scale with your content",
+  ),
   field(
     "Pricing page",
     "pagehero.pricing.description",
     "Description",
     "textarea",
-    "Start free, upgrade as your content and ad spend grow. No hidden fees.",
+    "Start free, upgrade as you generate more content, more variations, and manage more ad campaigns.",
   ),
 
   field("Features page", "pagehero.features.eyebrow", "Eyebrow", "text", "Features"),
@@ -206,24 +243,24 @@ export const CONTENT_FIELDS: ContentField[] = [
     "pagehero.features.title",
     "Title",
     "text",
-    "Everything your marketing team needs, in one platform",
+    "From one idea to ranked, platform-ready content and ad creative",
   ),
   field(
     "Features page",
     "pagehero.features.description",
     "Description",
     "textarea",
-    "Stop stitching together a dozen tools. MarketLoopAI replaces your content, video, publishing, and ad stack.",
+    "AI content repurposing, humanization and ranking, video ad generation, and multi-platform ad management — all in one workflow.",
   ),
 
   field("Solutions page", "pagehero.solutions.eyebrow", "Eyebrow", "text", "Solutions"),
-  field("Solutions page", "pagehero.solutions.title", "Title", "text", "Built for how you sell"),
+  field("Solutions page", "pagehero.solutions.title", "Title", "text", "Built for how you create and sell"),
   field(
     "Solutions page",
     "pagehero.solutions.description",
     "Description",
     "textarea",
-    "Whatever kind of business you run, MarketLoopAI adapts to your workflow.",
+    "Whether you're an e-commerce brand, a SaaS startup, an agency, or a personal brand, MarketLoopAI adapts your ideas to your audience.",
   ),
 
   field("Integrations page", "pagehero.integrations.eyebrow", "Eyebrow", "text", "Integrations"),
@@ -232,18 +269,18 @@ export const CONTENT_FIELDS: ContentField[] = [
     "pagehero.integrations.title",
     "Title",
     "text",
-    "Connects to everywhere you already work",
+    "Connects to the platforms your audience is already on",
   ),
   field(
     "Integrations page",
     "pagehero.integrations.description",
     "Description",
     "textarea",
-    "Publish content and launch ads directly on the platforms your audience lives on.",
+    "Generate and repurpose content for LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram, and manage ad campaigns across supported advertising platforms.",
   ),
 
   field("Contact page", "pagehero.contact.eyebrow", "Eyebrow", "text", "Contact"),
-  field("Contact page", "pagehero.contact.title", "Title", "text", "Let's talk about your marketing"),
+  field("Contact page", "pagehero.contact.title", "Title", "text", "Let's talk about your content and campaigns"),
   field(
     "Contact page",
     "pagehero.contact.description",

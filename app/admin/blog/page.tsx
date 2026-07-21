@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
+import { NotifySubscribersButton } from "@/components/admin/notify-subscribers-button";
 import { Button } from "@/components/ui/button";
 import { createServiceRoleClient } from "@/lib/supabase/server";
 
@@ -13,6 +14,8 @@ type Post = {
   category: string | null;
   published: boolean;
   updated_at: string;
+  notified_at: string | null;
+  notified_count: number | null;
 };
 
 async function getPosts(): Promise<Post[]> {
@@ -20,7 +23,7 @@ async function getPosts(): Promise<Post[]> {
     const supabase = createServiceRoleClient();
     const { data } = await supabase
       .from("blog_posts")
-      .select("id, title, slug, category, published, updated_at")
+      .select("id, title, slug, category, published, updated_at, notified_at, notified_count")
       .order("updated_at", { ascending: false });
     return (data as Post[]) ?? [];
   } catch {
@@ -28,15 +31,30 @@ async function getPosts(): Promise<Post[]> {
   }
 }
 
+async function getSubscriberCount(): Promise<number> {
+  try {
+    const supabase = createServiceRoleClient();
+    const { count } = await supabase
+      .from("waitlist")
+      .select("*", { count: "exact", head: true })
+      .is("unsubscribed_at", null);
+    return count ?? 0;
+  } catch {
+    return 0;
+  }
+}
+
 export default async function AdminBlogPage() {
-  const posts = await getPosts();
+  const [posts, subscriberCount] = await Promise.all([getPosts(), getSubscriberCount()]);
 
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Blog</h1>
-          <p className="mt-1 text-sm text-muted-foreground">{posts.length} posts</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {posts.length} posts · {subscriberCount} subscriber{subscriberCount === 1 ? "" : "s"}
+          </p>
         </div>
         <Button size="sm" nativeButton={false} render={<Link href="/admin/blog/new" />}>
           <Plus className="size-4" aria-hidden />
@@ -45,13 +63,14 @@ export default async function AdminBlogPage() {
       </div>
 
       <div className="mt-6 overflow-x-auto rounded-2xl border border-border">
-        <table className="w-full min-w-[560px] text-sm">
+        <table className="w-full min-w-[720px] text-sm">
           <thead>
             <tr className="border-b border-border text-left text-muted-foreground">
               <th className="p-3 font-medium">Title</th>
               <th className="p-3 font-medium">Category</th>
               <th className="p-3 font-medium">Status</th>
               <th className="p-3 font-medium">Updated</th>
+              <th className="p-3" />
               <th className="p-3" />
             </tr>
           </thead>
@@ -74,6 +93,16 @@ export default async function AdminBlogPage() {
                 <td className="p-3 text-muted-foreground">
                   {new Date(post.updated_at).toLocaleDateString()}
                 </td>
+                <td className="p-3">
+                  {post.published && (
+                    <NotifySubscribersButton
+                      postId={post.id}
+                      subscriberCount={subscriberCount}
+                      notifiedAt={post.notified_at}
+                      notifiedCount={post.notified_count}
+                    />
+                  )}
+                </td>
                 <td className="p-3 text-right">
                   <Link
                     href={`/admin/blog/${post.id}/edit`}
@@ -86,7 +115,7 @@ export default async function AdminBlogPage() {
             ))}
             {posts.length === 0 && (
               <tr>
-                <td colSpan={5} className="p-6 text-center text-muted-foreground">
+                <td colSpan={6} className="p-6 text-center text-muted-foreground">
                   No posts yet — create your first one.
                 </td>
               </tr>

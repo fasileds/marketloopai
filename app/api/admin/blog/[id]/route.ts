@@ -1,4 +1,3 @@
-import DOMPurify from "isomorphic-dompurify";
 import { NextResponse } from "next/server";
 
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -19,7 +18,20 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     return NextResponse.json({ error: "Please check the form for errors." }, { status: 400 });
   }
 
-  const { title, slug, excerpt, content, category, authorName, coverImageUrl, published } = parsed.data;
+  const {
+    title,
+    slug,
+    excerpt,
+    content,
+    category,
+    authorName,
+    coverImageUrl,
+    galleryImageUrls,
+    stats,
+    caseStudy,
+    template,
+    published,
+  } = parsed.data;
 
   const supabase = createServiceRoleClient();
 
@@ -37,10 +49,14 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       title,
       slug,
       excerpt: excerpt || null,
-      content: DOMPurify.sanitize(content),
+      content,
       category: category || null,
       author_name: authorName,
       cover_image_url: coverImageUrl || null,
+      gallery_image_urls: galleryImageUrls,
+      stats,
+      case_study: caseStudy,
+      template,
       published,
       published_at: publishedAt,
       updated_at: new Date().toISOString(),

@@ -9,7 +9,7 @@ import { getSiteContent, getText } from "@/lib/content/get-site-content";
 export const metadata: Metadata = {
   title: "Features",
   description:
-    "AI content generation, video, publishing, ad campaign management, and analytics — everything MarketLoopAI automates from one platform.",
+    "One idea in, complete content and advertising creative out: AI content repurposing, multi-platform content generation, humanization and AI judging, content ranking, video ad generation, scene-by-scene storyboards, and multi-platform ad management.",
 };
 
 export default async function FeaturesPage() {

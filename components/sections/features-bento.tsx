@@ -5,10 +5,10 @@ import {
   BarChart3,
   Clapperboard,
   Globe,
+  ListVideo,
   Megaphone,
   Recycle,
   Sparkles,
-  Users,
   Wand2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -29,7 +29,7 @@ const FEATURES_META: { icon: LucideIcon; className?: string }[] = [
   { icon: Recycle, className: "md:col-span-2" },
   { icon: Megaphone, className: "md:col-span-2" },
   { icon: BarChart3 },
-  { icon: Users },
+  { icon: ListVideo },
   { icon: Sparkles },
 ];
 

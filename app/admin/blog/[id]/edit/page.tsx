@@ -40,6 +40,10 @@ export default async function EditBlogPostPage({
             category: post.category ?? "",
             authorName: post.author_name,
             coverImageUrl: post.cover_image_url ?? "",
+            galleryImageUrls: post.gallery_image_urls ?? [],
+            stats: post.stats ?? [],
+            caseStudy: post.case_study ?? {},
+            template: post.template ?? "editorial",
             published: post.published,
           }}
         />

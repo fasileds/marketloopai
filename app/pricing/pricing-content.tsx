@@ -17,7 +17,7 @@ const PLANS = [
     monthly: 0,
     yearly: 0,
     featured: false,
-    features: ["1 workspace", "Basic AI content generation", "1 connected channel", "Community support"],
+    features: ["1 workspace", "AI content generation for 1 platform", "Basic humanization & AI judging", "Community support"],
   },
   {
     id: "starter",
@@ -28,9 +28,9 @@ const PLANS = [
     featured: false,
     features: [
       "Everything in Free",
-      "AI video generation (limited)",
-      "5 connected channels",
-      "Content repurposing",
+      "AI video ad generation (limited)",
+      "Content generation for 5 platforms",
+      "AI content repurposing",
       "Email support",
     ],
   },
@@ -43,9 +43,9 @@ const PLANS = [
     featured: true,
     features: [
       "Everything in Starter",
-      "Unlimited AI video generation",
-      "Unlimited channels",
-      "Ad campaign management",
+      "Unlimited AI video ad generation",
+      "Content generation for all platforms",
+      "Multi-platform ad campaign management",
       "Team collaboration",
       "Priority support",
     ],
@@ -61,7 +61,7 @@ const PLANS = [
       "Everything in Pro",
       "Multiple client workspaces",
       "Client-facing dashboards",
-      "Advanced analytics",
+      "Advanced ranking & performance analytics",
       "Dedicated onboarding",
     ],
   },
@@ -83,9 +83,9 @@ const PLANS = [
 ] as const;
 
 const COMPARISON_ROWS = [
-  { label: "AI content generation", free: true, starter: true, pro: true, agency: true, enterprise: true },
-  { label: "AI video generation", free: false, starter: "Limited", pro: true, agency: true, enterprise: true },
-  { label: "Ad campaign management", free: false, starter: false, pro: true, agency: true, enterprise: true },
+  { label: "AI content generation & repurposing", free: true, starter: true, pro: true, agency: true, enterprise: true },
+  { label: "AI video ad generation", free: false, starter: "Limited", pro: true, agency: true, enterprise: true },
+  { label: "Multi-platform ad campaign management", free: false, starter: false, pro: true, agency: true, enterprise: true },
   { label: "Team collaboration", free: false, starter: false, pro: true, agency: true, enterprise: true },
   { label: "Multiple client workspaces", free: false, starter: false, pro: false, agency: true, enterprise: true },
   { label: "SSO & advanced security", free: false, starter: false, pro: false, agency: false, enterprise: true },

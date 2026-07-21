@@ -9,23 +9,23 @@ import { PricingContent, type PlanTextMap } from "./pricing-content";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Simple, transparent pricing for AI content, video, publishing, and ad campaign management. Join the waitlist to lock in launch pricing.",
+    "Simple, transparent pricing for AI content generation, humanization & ranking, video ad generation, and multi-platform ad campaign management. Join the waitlist to lock in launch pricing.",
 };
 
 const PLAN_TEXT_DEFAULTS: Record<string, { name: string; tagline: string; features: string[] }> = {
   free: {
     name: "Free",
     tagline: "Try the basics",
-    features: ["1 workspace", "Basic AI content generation", "1 connected channel", "Community support"],
+    features: ["1 workspace", "AI content generation for 1 platform", "Basic humanization & AI judging", "Community support"],
   },
   starter: {
     name: "Starter",
     tagline: "For solo creators & small teams",
     features: [
       "Everything in Free",
-      "AI video generation (limited)",
-      "5 connected channels",
-      "Content repurposing",
+      "AI video ad generation (limited)",
+      "Content generation for 5 platforms",
+      "AI content repurposing",
       "Email support",
     ],
   },
@@ -34,9 +34,9 @@ const PLAN_TEXT_DEFAULTS: Record<string, { name: string; tagline: string; featur
     tagline: "For growing marketing teams",
     features: [
       "Everything in Starter",
-      "Unlimited AI video generation",
-      "Unlimited channels",
-      "Ad campaign management",
+      "Unlimited AI video ad generation",
+      "Content generation for all platforms",
+      "Multi-platform ad campaign management",
       "Team collaboration",
       "Priority support",
     ],
@@ -48,7 +48,7 @@ const PLAN_TEXT_DEFAULTS: Record<string, { name: string; tagline: string; featur
       "Everything in Pro",
       "Multiple client workspaces",
       "Client-facing dashboards",
-      "Advanced analytics",
+      "Advanced ranking & performance analytics",
       "Dedicated onboarding",
     ],
   },

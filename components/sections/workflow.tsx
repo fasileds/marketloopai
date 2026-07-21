@@ -9,17 +9,44 @@ import { EditableText } from "@/components/editing/editable-text";
 import { SectionHeading } from "./section-heading";
 
 const STEPS = [
-  { title: "Website", description: "Connect your site as the source of truth.", icon: Globe2 },
-  { title: "AI Analysis", description: "We learn your brand voice, offers, and audience.", icon: Brain },
   {
-    title: "Generate",
-    description: "Posts, videos, and ad creative generated automatically.",
+    title: "Give us your idea",
+    description: "Start with a sentence, a prompt, a product description, or content you already have.",
+    icon: Globe2,
+  },
+  {
+    title: "Generate multiple variations",
+    description: "MarketLoopAI generates several distinct versions of your content — up to nine per post.",
     icon: Sparkles,
   },
-  { title: "Publish", description: "Pushed to every channel, formatted and scheduled.", icon: Send },
-  { title: "Launch Ads", description: "Campaigns go live across TikTok, Snap, X, Google.", icon: Megaphone },
-  { title: "Analytics", description: "Unified performance data as it comes in.", icon: BarChart3 },
-  { title: "Optimize", description: "AI reallocates spend toward what's working.", icon: TrendingUp },
+  {
+    title: "Humanize & evaluate",
+    description: "Every version is scored for how natural, authentic, and human it feels, not just grammar.",
+    icon: Brain,
+  },
+  {
+    title: "Rank the best content",
+    description: "Versions are ranked by humanization and quality score, so the strongest one surfaces first.",
+    icon: TrendingUp,
+  },
+  {
+    title: "Adapt for every platform",
+    description:
+      "The winning version is reshaped for LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram — in each platform's own style.",
+    icon: Send,
+  },
+  {
+    title: "Create video or scene plans",
+    description:
+      "Generate a full AI video ad where supported, or get a scene-by-scene storyboard your team can shoot.",
+    icon: BarChart3,
+  },
+  {
+    title: "Launch and manage campaigns",
+    description:
+      "Organize your ad campaigns across TikTok Ads, Snapchat Ads, X Ads, Google Ads, and Facebook/Meta Ads.",
+    icon: Megaphone,
+  },
 ];
 
 export function Workflow({

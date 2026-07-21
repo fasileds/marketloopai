@@ -6,28 +6,26 @@ import {
   Briefcase,
   Camera,
   Music2,
-  ShoppingBag,
+  Search,
   Sparkle,
-  Store,
   ThumbsUp,
-  Video,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { EditableText } from "@/components/editing/editable-text";
 
 const INTEGRATIONS_ICONS: LucideIcon[] = [
+  Briefcase,
   Music2,
   Sparkle,
-  Briefcase,
-  Camera,
-  ThumbsUp,
   AtSign,
+  ThumbsUp,
+  Camera,
+  Music2,
   Sparkle,
-  ShoppingBag,
-  Store,
-  Store,
-  Video,
+  AtSign,
+  Search,
+  ThumbsUp,
 ];
 
 export function Integrations({ items }: { items: { name: string }[] }) {

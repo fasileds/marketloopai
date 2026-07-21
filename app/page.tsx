@@ -3,42 +3,50 @@ import { Faq, type FaqItem } from "@/components/sections/faq";
 import { Hero, type HeroStat } from "@/components/sections/hero";
 import { ProductShowcase } from "@/components/sections/product-showcase";
 import { Testimonials } from "@/components/sections/testimonials";
+import { TikTokShowcase } from "@/components/sections/tiktok-showcase";
 import { WaitlistCta } from "@/components/sections/waitlist-cta";
 import { Workflow } from "@/components/sections/workflow";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
+import { getPublishedTikTokVideos } from "@/lib/tiktok/get-videos";
 
 const DEFAULT_HERO_STATS: HeroStat[] = [
-  { value: "10x", label: "Faster content production" },
-  { value: "40+", label: "Channels & ad platforms" },
-  { value: "24/7", label: "AI-powered publishing" },
+  { value: "Up to 9", label: "Variations generated per post" },
+  { value: "6+", label: "Content & ad platforms supported" },
+  { value: "1", label: "Idea needed to start" },
 ];
 
 const DEFAULT_EXPLORE_ITEMS: ExploreItem[] = [
-  { title: "Features", description: "AI content, video, publishing, and ad campaign management." },
-  { title: "Solutions", description: "Built for Shopify stores, SaaS, personal brands, and agencies." },
-  { title: "Integrations", description: "TikTok, Instagram, Google Ads, Shopify, and more." },
+  {
+    title: "Features",
+    description: "AI content repurposing, humanization, ranking, and video ad generation.",
+  },
+  {
+    title: "Solutions",
+    description: "Built for e-commerce brands, SaaS startups, agencies, and personal brands.",
+  },
+  { title: "Integrations", description: "TikTok, Snapchat, X, Facebook, Instagram, LinkedIn, and Google Ads." },
 ];
 
 const DEFAULT_FAQ_ITEMS: FaqItem[] = [
   {
-    question: "When does MarketLoopAI launch?",
+    question: "How is this different from a generic AI writing tool?",
     answer:
-      "We're in active development. Joining the waitlist is the best way to get early access and updates as we get closer to launch.",
+      "Instead of generating one piece of content and showing it to you right away, MarketLoopAI generates multiple variations, scores each one for how natural and human it feels, and shows you the strongest version first — while still giving you access to every other variation.",
   },
   {
-    question: "What platforms can I publish and advertise on?",
+    question: "What platforms can I create content for?",
     answer:
-      "TikTok, Instagram, LinkedIn, X, Facebook, YouTube, and ad platforms including TikTok Ads, Snapchat Ads, X Ads, and Google Ads, with more integrations planned.",
+      "Content generation and repurposing currently target LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram, with more channels planned. Advertising workflows connect to TikTok Ads, Snapchat Ads, X Ads, Google Ads, and Facebook/Meta Ads.",
   },
   {
-    question: "Do I need any design or video editing experience?",
+    question: "Can it generate a full video ad, or just a script?",
     answer:
-      "No. MarketLoopAI generates on-brand content, video, and ad creative for you — you review and publish.",
+      "Both, depending on the platform and campaign. Where AI video generation is supported and authorized, MarketLoopAI can prepare a video ad up to about three minutes. If you'd rather produce it yourself, you get a detailed scene-by-scene storyboard — visual direction, on-screen text, voiceover, and calls-to-action.",
   },
   {
-    question: "Can my whole team use it?",
+    question: "Do I need design or video experience to use it?",
     answer:
-      "Yes. Team collaboration, shared workspaces, and approval workflows are built in from day one.",
+      "No. MarketLoopAI produces ready-to-use content and creative direction — you review, edit if you'd like, and publish.",
   },
   {
     question: "How does the referral program work?",
@@ -49,6 +57,7 @@ const DEFAULT_FAQ_ITEMS: FaqItem[] = [
 
 export default async function Home() {
   const content = await getSiteContent();
+  const tiktokVideos = await getPublishedTikTokVideos(4);
 
   const heroStats: HeroStat[] = DEFAULT_HERO_STATS.map((stat, index) => ({
     value: getText(content, `home.hero.stats.${index}.value`, stat.value),
@@ -79,12 +88,12 @@ export default async function Home() {
       <ExploreLinks items={exploreItems} />
       <ProductShowcase
         eyebrow={getText(content, "home.product.eyebrow", "Product")}
-        titlePrefix={getText(content, "home.product.title_prefix", "One dashboard,")}
-        titleHighlight={getText(content, "home.product.title_highlight", "every screen")}
+        titlePrefix={getText(content, "home.product.title_prefix", "Every variation,")}
+        titleHighlight={getText(content, "home.product.title_highlight", "ranked and ready")}
         description={getText(
           content,
           "home.product.description",
-          "Review campaigns, approve content, and check performance from wherever you work.",
+          "Review every generated variation, see how it's ranked, and manage your campaigns from one place.",
         )}
       />
       <Workflow
@@ -92,6 +101,7 @@ export default async function Home() {
         heading={getText(content, "home.workflow.heading")}
         description={getText(content, "home.workflow.description")}
       />
+      <TikTokShowcase videos={tiktokVideos} />
       <Testimonials />
       <Faq heading={getText(content, "home.faq.heading")} items={faqItems} />
       <WaitlistCta
