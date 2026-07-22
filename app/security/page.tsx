@@ -3,9 +3,23 @@ import type { Metadata } from "next";
 import { LegalPage, type LegalSection } from "@/components/legal/legal-page";
 import { getSiteContent, getText, type SiteContentMap } from "@/lib/content/get-site-content";
 
+const DESCRIPTION = "How MarketLoopAI approaches infrastructure, data, and application security.";
+
 export const metadata: Metadata = {
   title: "Security",
-  description: "How MarketLoopAI approaches infrastructure, data, and application security.",
+  description: DESCRIPTION,
+  alternates: { canonical: "/security" },
+  openGraph: {
+    title: "Security",
+    description: DESCRIPTION,
+    url: "/security",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Security",
+    description: DESCRIPTION,
+  },
 };
 
 const RAW_SECTIONS: {

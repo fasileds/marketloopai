@@ -25,7 +25,7 @@ export function SplitScreenTemplate({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={coverImageUrl}
-          alt=""
+          alt={title}
           className="aspect-[4/5] w-full rounded-3xl object-cover shadow-[0_32px_64px_-32px_rgba(0,0,0,0.45)] lg:aspect-[3/4]"
         />
       ) : (
@@ -39,7 +39,7 @@ export function SplitScreenTemplate({
 
       {thumbs.length > 0 && (
         <div className="mt-4">
-          <Gallery urls={thumbs} variant="grid-2" />
+          <Gallery urls={thumbs} variant="grid-2" altPrefix={title} />
         </div>
       )}
     </div>

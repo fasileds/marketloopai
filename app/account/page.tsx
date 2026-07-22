@@ -9,6 +9,7 @@ import { createServiceRoleClient, createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "Account",
+  robots: { index: false, follow: false },
 };
 
 async function getWaitlistEntry(email: string) {

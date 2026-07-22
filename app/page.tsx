@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { ExploreLinks, type ExploreItem } from "@/components/sections/explore-links";
 import { Faq, type FaqItem } from "@/components/sections/faq";
 import { Hero, type HeroStat } from "@/components/sections/hero";
@@ -8,6 +10,15 @@ import { WaitlistCta } from "@/components/sections/waitlist-cta";
 import { Workflow } from "@/components/sections/workflow";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
 import { getPublishedTikTokVideos } from "@/lib/tiktok/get-videos";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marketloopai.com";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    url: SITE_URL,
+  },
+};
 
 const DEFAULT_HERO_STATS: HeroStat[] = [
   { value: "Up to 9", label: "Variations generated per post" },
@@ -74,8 +85,24 @@ export default async function Home() {
     answer: getText(content, `home.faq.items.${index}.answer`, item.answer),
   }));
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <>
+      {/* eslint-disable-next-line @next/next/no-script-in-head-component -- structured data, not a runtime script */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+
       <Hero
         eyebrow={getText(content, "home.hero.eyebrow")}
         headlinePrefix={getText(content, "home.hero.headline_prefix")}

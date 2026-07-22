@@ -8,10 +8,24 @@ import { TikTokVideoGrid } from "@/components/media/tiktok-video-grid";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
 import { getPublishedTikTokVideos } from "@/lib/tiktok/get-videos";
 
+const DESCRIPTION =
+  "Product demos, feature walkthroughs, customer stories, and platform updates from MarketLoopAI — launching alongside the product.";
+
 export const metadata: Metadata = {
   title: "Media Center",
-  description:
-    "Product demos, feature walkthroughs, customer stories, and platform updates from MarketLoopAI — launching alongside the product.",
+  description: DESCRIPTION,
+  alternates: { canonical: "/media" },
+  openGraph: {
+    title: "Media Center",
+    description: DESCRIPTION,
+    url: "/media",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Media Center",
+    description: DESCRIPTION,
+  },
 };
 
 const CATEGORIES = [
@@ -64,6 +78,7 @@ export default async function MediaPage() {
         </section>
       )}
 
+      {videos.length === 0 && (
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-[100rem] gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {CATEGORIES.map((category, i) => (
@@ -91,6 +106,7 @@ export default async function MediaPage() {
           ))}
         </div>
       </section>
+      )}
 
       <WaitlistCtaBand
         title={getText(content, "media.cta.title", "Get notified when the media library launches")}

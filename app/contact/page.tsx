@@ -6,9 +6,27 @@ import { EditableText } from "@/components/editing/editable-text";
 import { PageHero } from "@/components/layout/page-hero";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marketloopai.com";
+
+const CONTACT_TITLE = "Contact";
+const CONTACT_DESCRIPTION =
+  "Get in touch with the MarketLoopAI team about AI content, ranking, humanization, and ad management.";
+
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch with the MarketLoopAI team about AI content, ranking, humanization, and ad management.",
+  title: CONTACT_TITLE,
+  description: CONTACT_DESCRIPTION,
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: CONTACT_TITLE,
+    description: CONTACT_DESCRIPTION,
+    url: `${SITE_URL}/contact`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: CONTACT_TITLE,
+    description: CONTACT_DESCRIPTION,
+  },
 };
 
 export default async function ContactPage() {

@@ -6,10 +6,27 @@ import { INTEGRATIONS_DEFAULTS } from "@/components/sections/integrations.data";
 import { WaitlistCtaBand } from "@/components/sections/waitlist-cta-band";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marketloopai.com";
+
+const INTEGRATIONS_TITLE = "Integrations";
+const INTEGRATIONS_DESCRIPTION =
+  "MarketLoopAI publishes to LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram, and manages ad campaigns across TikTok Ads, Snapchat Ads, X Ads, Google Ads, and Facebook/Meta Ads.";
+
 export const metadata: Metadata = {
-  title: "Integrations",
-  description:
-    "MarketLoopAI publishes to LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram, and manages ad campaigns across TikTok Ads, Snapchat Ads, X Ads, Google Ads, and Facebook/Meta Ads.",
+  title: INTEGRATIONS_TITLE,
+  description: INTEGRATIONS_DESCRIPTION,
+  alternates: { canonical: "/integrations" },
+  openGraph: {
+    title: INTEGRATIONS_TITLE,
+    description: INTEGRATIONS_DESCRIPTION,
+    url: `${SITE_URL}/integrations`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: INTEGRATIONS_TITLE,
+    description: INTEGRATIONS_DESCRIPTION,
+  },
 };
 
 export default async function IntegrationsPage() {

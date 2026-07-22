@@ -3,9 +3,23 @@ import type { Metadata } from "next";
 import { LegalPage, type LegalSection } from "@/components/legal/legal-page";
 import { getSiteContent, getText, type SiteContentMap } from "@/lib/content/get-site-content";
 
+const DESCRIPTION = "The terms that govern your use of MarketLoopAI.";
+
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "The terms that govern your use of MarketLoopAI.",
+  description: DESCRIPTION,
+  alternates: { canonical: "/terms" },
+  openGraph: {
+    title: "Terms of Service",
+    description: DESCRIPTION,
+    url: "/terms",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service",
+    description: DESCRIPTION,
+  },
 };
 
 const RAW_SECTIONS: {

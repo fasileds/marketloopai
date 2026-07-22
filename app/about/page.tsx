@@ -8,10 +8,27 @@ import { SectionHeading } from "@/components/sections/section-heading";
 import { WaitlistCtaBand } from "@/components/sections/waitlist-cta-band";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marketloopai.com";
+
+const ABOUT_TITLE = "About";
+const ABOUT_DESCRIPTION =
+  "We're building MarketLoopAI so one idea can become ranked, humanized, platform-ready content and advertising creative — without a dozen disconnected tools.";
+
 export const metadata: Metadata = {
-  title: "About",
-  description:
-    "We're building MarketLoopAI so one idea can become ranked, humanized, platform-ready content and advertising creative — without a dozen disconnected tools.",
+  title: ABOUT_TITLE,
+  description: ABOUT_DESCRIPTION,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
+    url: `${SITE_URL}/about`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
+  },
 };
 
 const VALUES = [

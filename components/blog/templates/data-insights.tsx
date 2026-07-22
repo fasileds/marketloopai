@@ -60,7 +60,7 @@ export function DataInsightsTemplate({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={coverImageUrl}
-            alt=""
+            alt={title}
             className="aspect-[21/9] w-full rounded-sm border border-border object-cover"
           />
         </div>
@@ -113,7 +113,7 @@ export function DataInsightsTemplate({
             <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               Figure — supporting data
             </p>
-            <Gallery urls={galleryImageUrls} variant="grid-2" className="rounded-sm" />
+            <Gallery urls={galleryImageUrls} variant="grid-2" className="rounded-sm" altPrefix={title} />
           </div>
         )}
       </div>

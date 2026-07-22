@@ -24,7 +24,13 @@ export function MagazineTemplate({
       {coverImageUrl ? (
         <div className="relative isolate flex min-h-[60svh] items-end overflow-hidden pt-32">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={coverImageUrl} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+          <img
+            src={coverImageUrl}
+            alt={title}
+            loading="eager"
+            fetchPriority="high"
+            className="absolute inset-0 -z-10 h-full w-full object-cover"
+          />
           <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
           <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-3 motion-safe:duration-700 mx-auto w-full max-w-4xl px-4 pb-12 sm:px-6 lg:px-8">
             {category && (
@@ -99,7 +105,9 @@ export function MagazineTemplate({
           ))}
         </div>
 
-        {galleryImageUrls.length > 0 && <Gallery urls={galleryImageUrls} variant="grid-3" className="mt-12" />}
+        {galleryImageUrls.length > 0 && (
+          <Gallery urls={galleryImageUrls} variant="grid-3" className="mt-12" altPrefix={title} />
+        )}
       </div>
     </article>
   );

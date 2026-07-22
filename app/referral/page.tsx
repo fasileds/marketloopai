@@ -6,9 +6,23 @@ import { PageHero } from "@/components/layout/page-hero";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
 import { createServiceRoleClient } from "@/lib/supabase/server";
 
+const DESCRIPTION = "See the top referrers moving up the MarketLoopAI waitlist.";
+
 export const metadata: Metadata = {
   title: "Referral Leaderboard",
-  description: "See the top referrers moving up the MarketLoopAI waitlist.",
+  description: DESCRIPTION,
+  alternates: { canonical: "/referral" },
+  openGraph: {
+    title: "Referral Leaderboard",
+    description: DESCRIPTION,
+    url: "/referral",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Referral Leaderboard",
+    description: DESCRIPTION,
+  },
 };
 
 export const revalidate = 60;

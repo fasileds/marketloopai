@@ -383,7 +383,7 @@ export function BlogPostForm({
               <div className="group relative overflow-hidden rounded-lg border border-border">
                 <Image
                   src={coverImageUrl}
-                  alt=""
+                  alt="Cover image preview"
                   width={640}
                   height={360}
                   className="aspect-video w-full object-cover"
@@ -442,7 +442,7 @@ export function BlogPostForm({
                   <div key={url} className="group relative overflow-hidden rounded-lg border border-border">
                     <Image
                       src={url}
-                      alt=""
+                      alt="Gallery image preview"
                       width={160}
                       height={160}
                       className="aspect-square w-full object-cover"

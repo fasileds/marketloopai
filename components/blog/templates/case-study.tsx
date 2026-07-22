@@ -105,7 +105,7 @@ export function CaseStudyTemplate({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={coverImageUrl}
-            alt=""
+            alt={title}
             className="aspect-video w-full rounded-2xl object-cover shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)]"
           />
         </div>
@@ -137,7 +137,7 @@ export function CaseStudyTemplate({
 
             {galleryImageUrls.length > 0 && (
               <div className="border-t border-border pt-8">
-                <Gallery urls={galleryImageUrls} variant="grid-3" />
+                <Gallery urls={galleryImageUrls} variant="grid-3" altPrefix={title} />
               </div>
             )}
 
@@ -173,7 +173,7 @@ export function CaseStudyTemplate({
         )}
 
         {!hasCaseStudy && galleryImageUrls.length > 0 && (
-          <Gallery urls={galleryImageUrls} variant="grid-3" className="mt-12" />
+          <Gallery urls={galleryImageUrls} variant="grid-3" className="mt-12" altPrefix={title} />
         )}
       </div>
     </article>

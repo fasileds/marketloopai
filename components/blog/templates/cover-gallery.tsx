@@ -25,7 +25,13 @@ export function CoverGalleryTemplate({
       {coverImageUrl ? (
         <div className="relative isolate h-[52svh] min-h-[360px] w-full overflow-hidden sm:h-[64svh]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={coverImageUrl} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <img
+            src={coverImageUrl}
+            alt={title}
+            loading="eager"
+            fetchPriority="high"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
         </div>
       ) : (
@@ -75,7 +81,7 @@ export function CoverGalleryTemplate({
 
       {galleryImageUrls.length > 0 && (
         <div className="mx-auto mt-12 max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Gallery urls={galleryImageUrls} variant="masonry" />
+          <Gallery urls={galleryImageUrls} variant="masonry" altPrefix={title} />
         </div>
       )}
 

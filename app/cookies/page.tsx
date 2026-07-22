@@ -3,9 +3,23 @@ import type { Metadata } from "next";
 import { LegalPage, type LegalSection } from "@/components/legal/legal-page";
 import { getSiteContent, getText, type SiteContentMap } from "@/lib/content/get-site-content";
 
+const DESCRIPTION = "How MarketLoopAI uses cookies and similar technologies.";
+
 export const metadata: Metadata = {
   title: "Cookie Policy",
-  description: "How MarketLoopAI uses cookies and similar technologies.",
+  description: DESCRIPTION,
+  alternates: { canonical: "/cookies" },
+  openGraph: {
+    title: "Cookie Policy",
+    description: DESCRIPTION,
+    url: "/cookies",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cookie Policy",
+    description: DESCRIPTION,
+  },
 };
 
 const RAW_SECTIONS: {

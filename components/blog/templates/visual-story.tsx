@@ -35,7 +35,13 @@ export function VisualStoryTemplate({
       {coverImageUrl ? (
         <div className="relative isolate flex min-h-[60svh] items-end overflow-hidden sm:min-h-[80svh]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={coverImageUrl} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+          <img
+            src={coverImageUrl}
+            alt={title}
+            loading="eager"
+            fetchPriority="high"
+            className="absolute inset-0 -z-10 h-full w-full object-cover"
+          />
           <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
           <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-6 motion-safe:duration-700 mx-auto w-full max-w-5xl px-4 pb-16 pt-32 sm:px-6 sm:pt-40 lg:px-8">
             {category && (
@@ -97,7 +103,7 @@ export function VisualStoryTemplate({
 
       {breakImageOne && (
         <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700 mx-auto mt-14 max-w-6xl px-4 sm:px-6 lg:px-8">
-          <Gallery urls={[breakImageOne]} variant="grid-2" className="!grid-cols-1" />
+          <Gallery urls={[breakImageOne]} variant="grid-2" className="!grid-cols-1" altPrefix={title} />
         </div>
       )}
 
@@ -123,7 +129,7 @@ export function VisualStoryTemplate({
 
       {breakImageTwo && (
         <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700 mx-auto mt-16 max-w-6xl px-4 sm:px-6 lg:px-8">
-          <Gallery urls={[breakImageTwo]} variant="grid-2" className="!grid-cols-1" />
+          <Gallery urls={[breakImageTwo]} variant="grid-2" className="!grid-cols-1" altPrefix={title} />
         </div>
       )}
 
@@ -140,7 +146,7 @@ export function VisualStoryTemplate({
       {remainingGalleryImages.length >= 3 && (
         <div className="mx-auto mt-16 max-w-5xl px-4 sm:px-6 lg:px-8">
           <p className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">More from this story</p>
-          <Gallery urls={remainingGalleryImages} variant="grid-3" />
+          <Gallery urls={remainingGalleryImages} variant="grid-3" altPrefix={title} />
         </div>
       )}
     </article>

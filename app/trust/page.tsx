@@ -14,10 +14,24 @@ import { EditableText } from "@/components/editing/editable-text";
 import { PageHero } from "@/components/layout/page-hero";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
 
+const DESCRIPTION =
+  "How MarketLoopAI approaches security, privacy, reliability, and compliance readiness.";
+
 export const metadata: Metadata = {
   title: "Trust Center",
-  description:
-    "How MarketLoopAI approaches security, privacy, reliability, and compliance readiness.",
+  description: DESCRIPTION,
+  alternates: { canonical: "/trust" },
+  openGraph: {
+    title: "Trust Center",
+    description: DESCRIPTION,
+    url: "/trust",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trust Center",
+    description: DESCRIPTION,
+  },
 };
 
 const PILLARS = [

@@ -27,7 +27,7 @@ export function MinimalTemplate({
         {coverImageUrl && (
           <div className="mt-10 flex justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={coverImageUrl} alt="" className="aspect-video w-full max-w-sm rounded-md object-cover" />
+            <img src={coverImageUrl} alt={title} className="aspect-video w-full max-w-sm rounded-md object-cover" />
           </div>
         )}
 
@@ -37,7 +37,9 @@ export function MinimalTemplate({
           ))}
         </div>
 
-        {galleryImageUrls.length > 0 && <Gallery urls={galleryImageUrls} variant="grid-3" className="mt-12" />}
+        {galleryImageUrls.length > 0 && (
+          <Gallery urls={galleryImageUrls} variant="grid-3" className="mt-12" altPrefix={title} />
+        )}
       </div>
     </article>
   );

@@ -204,7 +204,7 @@ function VideoRow({
     <div className="glass flex items-center gap-4 rounded-2xl p-4">
       <div className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-secondary">
         {thumbnail ? (
-          <Image src={thumbnail} alt="" width={64} height={64} className="size-16 object-cover" unoptimized />
+          <Image src={thumbnail} alt="Video thumbnail" width={64} height={64} className="size-16 object-cover" unoptimized />
         ) : (
           <div className="flex size-16 items-center justify-center text-muted-foreground">
             <ImageIcon className="size-5" aria-hidden />

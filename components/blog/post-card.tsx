@@ -35,10 +35,12 @@ export function Avatar({ name }: { name: string }) {
 
 export function CoverImage({
   post,
+  alt,
   className,
   imageClassName,
 }: {
   post: Pick<PostCardData, "cover_image_url">;
+  alt?: string;
   className?: string;
   imageClassName?: string;
 }) {
@@ -60,7 +62,7 @@ export function CoverImage({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={post.cover_image_url}
-        alt=""
+        alt={alt ?? ""}
         loading="lazy"
         className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${imageClassName ?? ""}`}
       />
@@ -75,7 +77,7 @@ export function PostCard({ post }: { post: PostCardData }) {
       href={`/blog/${post.slug}`}
       className="glass group flex flex-col overflow-hidden rounded-2xl transition-transform duration-300 hover:-translate-y-1"
     >
-      <CoverImage post={post} className="relative aspect-video w-full overflow-hidden" />
+      <CoverImage post={post} alt={post.title} className="relative aspect-video w-full overflow-hidden" />
       <div className="flex flex-1 flex-col gap-2.5 p-5">
         {post.category && (
           <span className="w-fit rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-primary">
@@ -104,6 +106,7 @@ export function FeaturedPostCard({ post }: { post: PostCardData }) {
     >
       <CoverImage
         post={post}
+        alt={post.title}
         className="relative aspect-video w-full overflow-hidden lg:aspect-auto lg:h-full lg:w-1/2"
       />
       <div className="flex flex-1 flex-col justify-center gap-3 p-6 sm:p-8 lg:p-8">

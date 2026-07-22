@@ -45,7 +45,7 @@ export function EditorialTemplate({
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={coverImageUrl}
-            alt=""
+            alt={title}
             className="mt-8 aspect-video w-full rounded-2xl object-cover shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)]"
           />
         )}
@@ -71,7 +71,7 @@ export function EditorialTemplate({
         {galleryImageUrls.length > 0 && (
           <div className="mt-12">
             <p className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">Gallery</p>
-            <Gallery urls={galleryImageUrls} variant="masonry" />
+            <Gallery urls={galleryImageUrls} variant="masonry" altPrefix={title} />
           </div>
         )}
       </div>

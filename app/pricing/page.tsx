@@ -6,26 +6,53 @@ import { getSiteContent, getText } from "@/lib/content/get-site-content";
 
 import { PricingContent, type PlanTextMap } from "./pricing-content";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marketloopai.com";
+
+const PRICING_TITLE = "Pricing";
+const PRICING_DESCRIPTION =
+  "Simple, transparent pricing for AI content generation, humanization & ranking, video ad generation, and multi-platform ad campaign management. Join the waitlist to lock in launch pricing.";
+
 export const metadata: Metadata = {
-  title: "Pricing",
-  description:
-    "Simple, transparent pricing for AI content generation, humanization & ranking, video ad generation, and multi-platform ad campaign management. Join the waitlist to lock in launch pricing.",
+  title: PRICING_TITLE,
+  description: PRICING_DESCRIPTION,
+  alternates: { canonical: "/pricing" },
+  openGraph: {
+    title: PRICING_TITLE,
+    description: PRICING_DESCRIPTION,
+    url: `${SITE_URL}/pricing`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PRICING_TITLE,
+    description: PRICING_DESCRIPTION,
+  },
 };
 
 const PLAN_TEXT_DEFAULTS: Record<string, { name: string; tagline: string; features: string[] }> = {
   free: {
     name: "Free",
     tagline: "Try the basics",
-    features: ["1 workspace", "AI content generation for 1 platform", "Basic humanization & AI judging", "Community support"],
+    features: [
+      "10 AI content generations/month",
+      "1 AI video/month",
+      "5 AI images/month",
+      "Connect all supported platforms",
+      "Basic scheduling",
+      "Community support",
+    ],
   },
   starter: {
     name: "Starter",
     tagline: "For solo creators & small teams",
     features: [
-      "Everything in Free",
-      "AI video ad generation (limited)",
-      "Content generation for 5 platforms",
-      "AI content repurposing",
+      "100 AI content generations/month",
+      "5 AI videos/month",
+      "30 AI images/month",
+      "20 AI ad generations/month",
+      "Connect all supported platforms",
+      "Content repurposing",
+      "AI humanization",
       "Email support",
     ],
   },
@@ -33,10 +60,11 @@ const PLAN_TEXT_DEFAULTS: Record<string, { name: string; tagline: string; featur
     name: "Pro",
     tagline: "For growing marketing teams",
     features: [
-      "Everything in Starter",
-      "Unlimited AI video ad generation",
-      "Content generation for all platforms",
-      "Multi-platform ad campaign management",
+      "300 AI content generations/month",
+      "20 AI videos/month",
+      "100 AI images/month",
+      "100 AI ad generations/month",
+      "Connect all supported platforms",
       "Team collaboration",
       "Priority support",
     ],
@@ -45,22 +73,15 @@ const PLAN_TEXT_DEFAULTS: Record<string, { name: string; tagline: string; featur
     name: "Agency",
     tagline: "For agencies managing multiple brands",
     features: [
-      "Everything in Pro",
-      "Multiple client workspaces",
-      "Client-facing dashboards",
-      "Advanced ranking & performance analytics",
+      "1,000 AI content generations/month",
+      "80 AI videos/month",
+      "300 AI images/month",
+      "300 AI ad generations/month",
+      "Connect all supported platforms",
+      "Multiple workspaces",
+      "Team members",
+      "Advanced analytics",
       "Dedicated onboarding",
-    ],
-  },
-  enterprise: {
-    name: "Enterprise",
-    tagline: "For large organizations",
-    features: [
-      "Everything in Agency",
-      "Custom integrations",
-      "SSO & advanced security controls",
-      "Dedicated success manager",
-      "Custom contract & SLA",
     ],
   },
 };

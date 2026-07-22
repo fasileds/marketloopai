@@ -8,10 +8,24 @@ import { WaitlistCtaBand } from "@/components/sections/waitlist-cta-band";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
 import { createServiceRoleClient } from "@/lib/supabase/server";
 
+const DESCRIPTION =
+  "Guides and updates on AI content repurposing, humanization, ranking, and multi-platform ad creative — launching alongside MarketLoopAI.";
+
 export const metadata: Metadata = {
   title: "Blog",
-  description:
-    "Guides and updates on AI content repurposing, humanization, ranking, and multi-platform ad creative — launching alongside MarketLoopAI.",
+  description: DESCRIPTION,
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Blog",
+    description: DESCRIPTION,
+    url: "/blog",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog",
+    description: DESCRIPTION,
+  },
 };
 
 export const revalidate = 60;

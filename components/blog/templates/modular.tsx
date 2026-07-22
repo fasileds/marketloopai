@@ -79,7 +79,7 @@ export function ModularTemplate({
               className={`min-h-[220px] overflow-hidden rounded-3xl ${excerpt ? "lg:col-span-3" : "lg:col-span-6"}`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={heroImage} alt="" className="h-full min-h-[220px] w-full object-cover" />
+              <img src={heroImage} alt={title} className="h-full min-h-[220px] w-full object-cover" />
             </div>
           )}
 
@@ -100,7 +100,12 @@ export function ModularTemplate({
           {singleImages.map((url, i) => (
             <div key={`img-${i}`} className={`min-h-[200px] overflow-hidden rounded-2xl ${imageSpans[i % imageSpans.length]}`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={url} alt="" className="h-full min-h-[200px] w-full object-cover" />
+              <img
+                src={url}
+                alt={`${title} — image ${i + 1}`}
+                loading="lazy"
+                className="h-full min-h-[200px] w-full object-cover"
+              />
             </div>
           ))}
 
@@ -118,7 +123,7 @@ export function ModularTemplate({
           {/* Remaining gallery images as a full-width cluster */}
           {clusterImages.length > 0 && (
             <div className="lg:col-span-6">
-              <Gallery urls={clusterImages} variant="grid-3" />
+              <Gallery urls={clusterImages} variant="grid-3" altPrefix={title} />
             </div>
           )}
         </div>

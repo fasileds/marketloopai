@@ -16,28 +16,53 @@ import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marketloopai.com";
 
+const SITE_NAME = "MarketLoopAI";
+const SITE_DESCRIPTION =
+  "One idea in, complete content and advertising creative out. MarketLoopAI generates multiple content variations, humanizes and ranks them, adapts the best one for LinkedIn, TikTok, Snapchat, X, Facebook, and Instagram, and helps you create and manage ad campaigns across TikTok Ads, Snapchat Ads, X Ads, Google Ads, and Facebook/Meta Ads.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "MarketLoopAI — AI Content, Video & Ad Campaigns From One Platform",
-    template: "%s | MarketLoopAI",
+    default: `${SITE_NAME} — AI Content Repurposing, Humanization & Multi-Platform Ad Management`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Generate AI content, create product videos, publish everywhere, and launch ad campaigns from one intelligent platform. Join the waitlist for early access.",
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "MarketLoopAI — Turn Your Website Into Content, Videos, and Ad Campaigns",
-    description:
-      "Generate AI content, create product videos, publish everywhere, and launch ad campaigns from one intelligent platform.",
+    title: `${SITE_NAME} — One Idea In, Content and Ad Creative Out`,
+    description: SITE_DESCRIPTION,
     url: siteUrl,
-    siteName: "MarketLoopAI",
+    siteName: SITE_NAME,
     type: "website",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "MarketLoopAI — AI Marketing, One Platform",
-    description:
-      "Generate AI content, create product videos, publish everywhere, and launch ad campaigns from one intelligent platform.",
+    title: `${SITE_NAME} — One Idea In, Content and Ad Creative Out`,
+    description: SITE_DESCRIPTION,
   },
+  robots: { index: true, follow: true },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}#organization`,
+      name: SITE_NAME,
+      url: siteUrl,
+      description: SITE_DESCRIPTION,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      url: siteUrl,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      publisher: { "@id": `${siteUrl}#organization` },
+    },
+  ],
 };
 
 export default async function RootLayout({
@@ -55,10 +80,10 @@ export default async function RootLayout({
     solutions: getText(content, "nav.solutions.label", "Solutions"),
     pricing: getText(content, "nav.pricing.label", "Pricing"),
     blog: getText(content, "nav.blog.label", "Blog"),
+    media: getText(content, "nav.media.label", "Media"),
     about: getText(content, "nav.about.label", "About"),
     "resources-integrations": getText(content, "nav.resources-integrations.label", "Integrations"),
     "resources-roadmap": getText(content, "nav.resources-roadmap.label", "Roadmap"),
-    "resources-media": getText(content, "nav.resources-media.label", "Media Center"),
     "resources-referral": getText(content, "nav.resources-referral.label", "Referral Leaderboard"),
     "resources-trust": getText(content, "nav.resources-trust.label", "Trust Center"),
   };
@@ -98,6 +123,14 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        >
+          Skip to main content
+        </a>
+        {/* eslint-disable-next-line @next/next/no-script-in-head-component -- structured data, not a runtime script */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <EditModeProvider isAdmin={isAdmin}>
             <LenisProvider>
@@ -108,7 +141,7 @@ export default async function RootLayout({
                 ctaLabel={navCtaLabel}
                 resourcesLabel={navResourcesLabel}
               />
-              <main className="flex-1">{children}</main>
+              <main id="main-content" className="flex-1">{children}</main>
               <Footer />
             </LenisProvider>
             <Toaster />

@@ -28,7 +28,23 @@ export async function generateMetadata({
   const { slug } = await params;
   const page = await getPage(slug);
   if (!page) return {};
-  return { title: page.title, robots: { index: false, follow: false } };
+
+  const url = `/legal/${slug}`;
+
+  return {
+    title: page.title,
+    alternates: { canonical: url },
+    openGraph: {
+      title: page.title,
+      url,
+      type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title: page.title,
+    },
+    robots: { index: false, follow: false },
+  };
 }
 
 export default async function LegalDocumentPage({

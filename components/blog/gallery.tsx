@@ -23,10 +23,12 @@ export function Gallery({
   urls,
   variant = "grid-3",
   className,
+  altPrefix = "Gallery image",
 }: {
   urls: string[];
   variant?: GalleryVariant;
   className?: string;
+  altPrefix?: string;
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -53,7 +55,7 @@ export function Gallery({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={url}
-              alt=""
+              alt={`${altPrefix} ${index + 1}`}
               loading="lazy"
               className={cn(
                 "w-full transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100",
@@ -66,7 +68,13 @@ export function Gallery({
       </div>
 
       {openIndex !== null && (
-        <Lightbox urls={urls} index={openIndex} onIndex={setOpenIndex} onClose={() => setOpenIndex(null)} />
+        <Lightbox
+          urls={urls}
+          index={openIndex}
+          onIndex={setOpenIndex}
+          onClose={() => setOpenIndex(null)}
+          altPrefix={altPrefix}
+        />
       )}
     </>
   );
@@ -77,11 +85,13 @@ function Lightbox({
   index,
   onIndex,
   onClose,
+  altPrefix,
 }: {
   urls: string[];
   index: number;
   onIndex: (i: number) => void;
   onClose: () => void;
+  altPrefix: string;
 }) {
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -144,7 +154,7 @@ function Lightbox({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={urls[index]}
-        alt=""
+        alt={`${altPrefix} ${index + 1}`}
         onClick={(e) => e.stopPropagation()}
         className="max-h-[85vh] max-w-full rounded-lg object-contain"
       />

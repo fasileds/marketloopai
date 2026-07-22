@@ -17,7 +17,14 @@ const PLANS = [
     monthly: 0,
     yearly: 0,
     featured: false,
-    features: ["1 workspace", "AI content generation for 1 platform", "Basic humanization & AI judging", "Community support"],
+    features: [
+      "10 AI content generations/month",
+      "1 AI video/month",
+      "5 AI images/month",
+      "Connect all supported platforms",
+      "Basic scheduling",
+      "Community support",
+    ],
   },
   {
     id: "starter",
@@ -27,10 +34,13 @@ const PLANS = [
     yearly: 24,
     featured: false,
     features: [
-      "Everything in Free",
-      "AI video ad generation (limited)",
-      "Content generation for 5 platforms",
-      "AI content repurposing",
+      "100 AI content generations/month",
+      "5 AI videos/month",
+      "30 AI images/month",
+      "20 AI ad generations/month",
+      "Connect all supported platforms",
+      "Content repurposing",
+      "AI humanization",
       "Email support",
     ],
   },
@@ -42,10 +52,11 @@ const PLANS = [
     yearly: 65,
     featured: true,
     features: [
-      "Everything in Starter",
-      "Unlimited AI video ad generation",
-      "Content generation for all platforms",
-      "Multi-platform ad campaign management",
+      "300 AI content generations/month",
+      "20 AI videos/month",
+      "100 AI images/month",
+      "100 AI ad generations/month",
+      "Connect all supported platforms",
       "Team collaboration",
       "Priority support",
     ],
@@ -58,37 +69,25 @@ const PLANS = [
     yearly: 165,
     featured: false,
     features: [
-      "Everything in Pro",
-      "Multiple client workspaces",
-      "Client-facing dashboards",
-      "Advanced ranking & performance analytics",
+      "1,000 AI content generations/month",
+      "80 AI videos/month",
+      "300 AI images/month",
+      "300 AI ad generations/month",
+      "Connect all supported platforms",
+      "Multiple workspaces",
+      "Team members",
+      "Advanced analytics",
       "Dedicated onboarding",
-    ],
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    tagline: "For large organizations",
-    monthly: null,
-    yearly: null,
-    featured: false,
-    features: [
-      "Everything in Agency",
-      "Custom integrations",
-      "SSO & advanced security controls",
-      "Dedicated success manager",
-      "Custom contract & SLA",
     ],
   },
 ] as const;
 
 const COMPARISON_ROWS = [
-  { label: "AI content generation & repurposing", free: true, starter: true, pro: true, agency: true, enterprise: true },
-  { label: "AI video ad generation", free: false, starter: "Limited", pro: true, agency: true, enterprise: true },
-  { label: "Multi-platform ad campaign management", free: false, starter: false, pro: true, agency: true, enterprise: true },
-  { label: "Team collaboration", free: false, starter: false, pro: true, agency: true, enterprise: true },
-  { label: "Multiple client workspaces", free: false, starter: false, pro: false, agency: true, enterprise: true },
-  { label: "SSO & advanced security", free: false, starter: false, pro: false, agency: false, enterprise: true },
+  { label: "AI content generation & repurposing", free: true, starter: true, pro: true, agency: true },
+  { label: "AI video ad generation", free: false, starter: "Limited", pro: true, agency: true },
+  { label: "Multi-platform ad campaign management", free: false, starter: false, pro: true, agency: true },
+  { label: "Team collaboration", free: false, starter: false, pro: true, agency: true },
+  { label: "Multiple client workspaces", free: false, starter: false, pro: false, agency: true },
 ] as const;
 
 function Cell({ value }: { value: boolean | string }) {
@@ -127,7 +126,7 @@ export function PricingContent({ planText }: { planText: PlanTextMap }) {
         </span>
       </div>
 
-      <div className="mx-auto mt-14 grid max-w-[100rem] gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="mx-auto mt-14 grid max-w-[100rem] gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {PLANS.map((plan) => {
           const text = planText[plan.id];
           return (
@@ -232,11 +231,8 @@ export function PricingContent({ planText }: { planText: PlanTextMap }) {
                 <td className="p-3 text-center">
                   <Cell value={row.pro} />
                 </td>
-                <td className="p-3 text-center">
-                  <Cell value={row.agency} />
-                </td>
                 <td className="rounded-r-lg p-3 text-center">
-                  <Cell value={row.enterprise} />
+                  <Cell value={row.agency} />
                 </td>
               </tr>
             ))}

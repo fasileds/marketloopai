@@ -5,9 +5,23 @@ import { getSiteContent, getText } from "@/lib/content/get-site-content";
 
 import { RoadmapContent } from "./roadmap-content";
 
+const DESCRIPTION = "What we're building next at MarketLoopAI, and what's already shipped.";
+
 export const metadata: Metadata = {
   title: "Roadmap",
-  description: "What we're building next at MarketLoopAI, and what's already shipped.",
+  description: DESCRIPTION,
+  alternates: { canonical: "/roadmap" },
+  openGraph: {
+    title: "Roadmap",
+    description: DESCRIPTION,
+    url: "/roadmap",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Roadmap",
+    description: DESCRIPTION,
+  },
 };
 
 const ROADMAP_ITEMS = [

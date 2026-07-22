@@ -54,7 +54,7 @@ export function TikTokVideoCard({ video }: { video: TikTokVideoData }) {
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={thumbnail}
-              alt=""
+              alt={video.title || video.caption || "TikTok video"}
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />

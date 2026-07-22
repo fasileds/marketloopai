@@ -6,10 +6,27 @@ import { SOLUTIONS_DEFAULTS } from "@/components/sections/solutions.data";
 import { WaitlistCtaBand } from "@/components/sections/waitlist-cta-band";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marketloopai.com";
+
+const SOLUTIONS_TITLE = "Solutions";
+const SOLUTIONS_DESCRIPTION =
+  "See how MarketLoopAI generates, ranks, and adapts content and ad creative for e-commerce brands, SaaS companies, personal brands, agencies, and small businesses.";
+
 export const metadata: Metadata = {
-  title: "Solutions",
-  description:
-    "See how MarketLoopAI generates, ranks, and adapts content and ad creative for e-commerce brands, SaaS companies, personal brands, agencies, and small businesses.",
+  title: SOLUTIONS_TITLE,
+  description: SOLUTIONS_DESCRIPTION,
+  alternates: { canonical: "/solutions" },
+  openGraph: {
+    title: SOLUTIONS_TITLE,
+    description: SOLUTIONS_DESCRIPTION,
+    url: `${SITE_URL}/solutions`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SOLUTIONS_TITLE,
+    description: SOLUTIONS_DESCRIPTION,
+  },
 };
 
 export default async function SolutionsPage() {

@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Logo } from "@/components/brand/logo";
@@ -24,13 +25,13 @@ const PRIMARY_LINKS = [
   { key: "solutions", label: "Solutions", href: "/solutions" },
   { key: "pricing", label: "Pricing", href: "/pricing" },
   { key: "blog", label: "Blog", href: "/blog" },
+  { key: "media", label: "Media", href: "/media" },
   { key: "about", label: "About", href: "/about" },
 ];
 
 const RESOURCE_LINKS = [
   { key: "resources-integrations", label: "Integrations", href: "/integrations" },
   { key: "resources-roadmap", label: "Roadmap", href: "/roadmap" },
-  { key: "resources-media", label: "Media Center", href: "/media" },
   { key: "resources-referral", label: "Referral Leaderboard", href: "/referral" },
   { key: "resources-trust", label: "Trust Center", href: "/trust" },
 ];
@@ -49,8 +50,16 @@ export function Navbar({
   resourcesLabel: string;
 }) {
   const { isAdmin } = useEditMode();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    return pathname === href || (pathname?.startsWith(href + "/") ?? false);
+  }
+
+  const resourcesActive = RESOURCE_LINKS.some((link) => isActive(link.href));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -79,35 +88,54 @@ export function Navbar({
 
         <NavigationMenu className="hidden max-w-none flex-none xl:flex">
           <NavigationMenuList className="gap-1 text-sm text-muted-foreground">
-            {PRIMARY_LINKS.map((link) => (
-              <NavigationMenuItem key={link.href}>
-                <NavigationMenuLink
-                  render={<Link href={link.href} />}
-                  className="hover:text-foreground"
-                >
-                  <EditableText
-                    contentKey={`nav.${link.key}.label`}
-                    value={navLabels[link.key] ?? link.label}
-                  />
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
+            {PRIMARY_LINKS.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <NavigationMenuItem key={link.href}>
+                  <NavigationMenuLink
+                    render={<Link href={link.href} aria-current={active ? "page" : undefined} />}
+                    className={`relative hover:text-foreground ${active ? "text-foreground font-medium" : ""}`}
+                  >
+                    <EditableText
+                      contentKey={`nav.${link.key}.label`}
+                      value={navLabels[link.key] ?? link.label}
+                    />
+                    {active && (
+                      <span className="absolute inset-x-2 -bottom-1 h-0.5 rounded-full bg-primary" aria-hidden />
+                    )}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              );
+            })}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-muted-foreground hover:text-foreground data-popup-open:text-foreground">
+              <NavigationMenuTrigger
+                className={`relative text-muted-foreground hover:text-foreground data-popup-open:text-foreground ${
+                  resourcesActive ? "text-foreground font-medium" : ""
+                }`}
+              >
                 <EditableText contentKey="nav.resources.label" value={resourcesLabel} />
+                {resourcesActive && (
+                  <span className="absolute inset-x-2 -bottom-1 h-0.5 rounded-full bg-primary" aria-hidden />
+                )}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="flex w-56 flex-col p-1">
-                  {RESOURCE_LINKS.map((link) => (
-                    <li key={link.href}>
-                      <NavigationMenuLink render={<Link href={link.href} />}>
-                        <EditableText
-                          contentKey={`nav.${link.key}.label`}
-                          value={navLabels[link.key] ?? link.label}
-                        />
-                      </NavigationMenuLink>
-                    </li>
-                  ))}
+                  {RESOURCE_LINKS.map((link) => {
+                    const active = isActive(link.href);
+                    return (
+                      <li key={link.href}>
+                        <NavigationMenuLink
+                          render={<Link href={link.href} aria-current={active ? "page" : undefined} />}
+                          className={active ? "text-foreground font-medium" : ""}
+                        >
+                          <EditableText
+                            contentKey={`nav.${link.key}.label`}
+                            value={navLabels[link.key] ?? link.label}
+                          />
+                        </NavigationMenuLink>
+                      </li>
+                    );
+                  })}
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
@@ -141,20 +169,26 @@ export function Navbar({
             className="overflow-hidden border-b border-border bg-background/95 backdrop-blur-xl xl:hidden"
           >
             <ul className="flex max-h-[70svh] flex-col gap-1 overflow-y-auto px-4 py-4 text-sm sm:px-6">
-              {ALL_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="block rounded-lg px-2 py-2.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <EditableText
-                      contentKey={`nav.${link.key}.label`}
-                      value={navLabels[link.key] ?? link.label}
-                    />
-                  </Link>
-                </li>
-              ))}
+              {ALL_LINKS.map((link) => {
+                const active = isActive(link.href);
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      aria-current={active ? "page" : undefined}
+                      className={`block rounded-lg px-2 py-2.5 transition-colors hover:bg-secondary hover:text-foreground ${
+                        active ? "bg-secondary text-foreground font-medium" : "text-muted-foreground"
+                      }`}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <EditableText
+                        contentKey={`nav.${link.key}.label`}
+                        value={navLabels[link.key] ?? link.label}
+                      />
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
             <div className="px-4 pb-4 sm:px-6">
               <Button
