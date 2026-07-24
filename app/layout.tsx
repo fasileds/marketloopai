@@ -53,6 +53,12 @@ const jsonLd = {
       name: SITE_NAME,
       url: siteUrl,
       description: SITE_DESCRIPTION,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/apple-icon`,
+        width: 180,
+        height: 180,
+      },
     },
     {
       "@type": "WebSite",

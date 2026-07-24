@@ -1,10 +1,30 @@
 import { ImageResponse } from "next/og";
 
-export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
 // Mirrors components/brand/logo-mark.tsx
-export default function Icon() {
+// Google requires at least a 48x48 square icon (recommends 96/144/192 too) to
+// show a site's favicon in search results — see
+// https://developers.google.com/search/docs/appearance/favicon-in-search
+const ICONS = [
+  { id: "48", size: 48 },
+  { id: "96", size: 96 },
+  { id: "192", size: 192 },
+];
+
+export function generateImageMetadata() {
+  return ICONS.map(({ id, size }) => ({
+    id,
+    size: { width: size, height: size },
+    contentType,
+  }));
+}
+
+export default async function Icon({ id }: { id: Promise<string | number> }) {
+  const iconId = await id;
+  const { size } = ICONS.find((icon) => icon.id === iconId) ?? ICONS[0];
+  const glyph = Math.round((size * 27) / 32);
+
   return new ImageResponse(
     (
       <div
@@ -15,10 +35,10 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#050505",
-          borderRadius: 7,
+          borderRadius: Math.round((size * 7) / 32),
         }}
       >
-        <svg width="27" height="27" viewBox="0 0 72 72">
+        <svg width={glyph} height={glyph} viewBox="0 0 72 72">
           <path
             d="M40.17 59.64 A24 24 0 1 1 59.64 40.17"
             fill="none"
@@ -39,6 +59,6 @@ export default function Icon() {
         </svg>
       </div>
     ),
-    size,
+    { width: size, height: size },
   );
 }
