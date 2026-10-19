@@ -89,8 +89,9 @@ export default async function AdminLegalPage() {
             {pages.length === 0 && (
               <tr>
                 <td colSpan={5} className="p-6 text-center text-muted-foreground">
-                  No pages yet — create your first one. (Terms, Privacy, Cookies, Security, and
-                  Trust already exist as built-in pages and don&apos;t need to be recreated here.)
+                  No pages yet — create your first one. Built-in pages (Terms, Privacy, Acceptable
+                  Use, Cookies, DPA, AI Policy, and the rest of the legal center) don&apos;t need to
+                  be recreated here.
                 </td>
               </tr>
             )}

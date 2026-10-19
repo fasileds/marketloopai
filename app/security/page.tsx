@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 
 import { LegalPage, type LegalSection } from "@/components/legal/legal-page";
 import { getSiteContent, getText, type SiteContentMap } from "@/lib/content/get-site-content";
+import { LEGAL_LAST_UPDATED } from "@/lib/legal/constants";
 
-const DESCRIPTION = "How MarketLoopAI approaches infrastructure, data, and application security.";
+const DESCRIPTION =
+  "How MarketLoopAI protects accounts, Customer Content, AI video jobs, and connected social and advertising platforms across the SaaS.";
 
 export const metadata: Metadata = {
   title: "Security",
@@ -28,72 +30,107 @@ const RAW_SECTIONS: {
   content: (string | { list: string[] })[];
 }[] = [
   {
-    id: "infrastructure",
-    heading: "Infrastructure Overview",
+    id: "overview",
+    heading: "1. Overview",
     content: [
-      "MarketLoopAI is built on Vercel for hosting and Supabase for our database, authentication, and storage layer — both established providers with their own security programs and compliance certifications.",
+      "This page describes how we approach security for the MarketLoopAI SaaS — the marketing site, the application, AI generation (including self-hosted video models such as Wan 2.2), storage of prompts and media, publishing, and ad campaign management. Processor terms are in the DPA; vendors are listed on the Subprocessors page.",
+      "No system is perfectly secure. We design for defense in depth and will keep raising the bar as the product grows. See also the Privacy Policy and Trust Center.",
+    ],
+  },
+  {
+    id: "infrastructure",
+    heading: "2. Infrastructure",
+    content: [
+      "The web application is hosted on Vercel. Database, authentication, and object storage use Supabase. Payments use Stripe. Email uses a transactional provider such as Resend. Generation jobs may run on GPU workers we operate in a cloud account, isolated from the public internet except for required egress (for example to write outputs to storage).",
+      "Those providers maintain their own security and compliance programs. We configure our tenants to least privilege where the platform allows it.",
     ],
   },
   {
     id: "encryption",
-    heading: "Data Encryption",
+    heading: "3. Encryption",
     content: [
-      "Data is encrypted in transit using TLS. Data at rest in our database is encrypted using our infrastructure provider's storage-level encryption.",
+      "Data is encrypted in transit with TLS. Data at rest uses our infrastructure providers' storage-level encryption. Private media (generated videos, uploads) is intended to be served via short-lived signed URLs rather than public buckets.",
     ],
   },
   {
     id: "authentication",
-    heading: "Authentication",
+    heading: "4. Authentication",
     content: [
-      "Account sign-in is handled via Supabase Auth, supporting Google OAuth and passwordless magic-link email sign-in. We never store plaintext passwords for magic-link accounts.",
+      "Sign-in uses Supabase Auth: Google OAuth and passwordless magic-link email. We do not store plaintext passwords for magic-link accounts. Sessions are cookie-based and scoped to our domains.",
+      "Organization owners should revoke access when people leave. We recommend using a company-controlled email address.",
     ],
   },
   {
-    id: "supabase-security",
-    heading: "Supabase Security",
+    id: "tenant-isolation",
+    heading: "5. Tenant isolation",
     content: [
-      "Our database uses Row Level Security (RLS) policies so that data access is enforced at the database layer, not just in application code. Sensitive tables (like our waitlist) have no public read/write access — all writes go through server-side, service-role-authenticated API routes.",
+      "The product is multi-tenant. Access to organization data is enforced with Row Level Security (RLS) in the database and with server-side checks on API routes. Members should only see workspaces they belong to. Sensitive tables (waitlist, admin, billing metadata) are not publicly readable or writable from the browser.",
+    ],
+  },
+  {
+    id: "customer-content",
+    heading: "6. Prompts, assets, and generation jobs",
+    content: [
+      "Customer Content (prompts, uploads, outputs, job records) is stored per organization. GPU workers receive only the payload needed for a job plus credentials sufficient to write the result. Workers are not given the database service role for arbitrary queries.",
+      "We may scan inputs and outputs for malware, policy violations, or illegal content. We do not use your prompts or media to train public foundation models unless you opt into a separate program.",
+    ],
+  },
+  {
+    id: "connected-platforms",
+    heading: "7. Social and ads connections",
+    content: [
+      "When you connect LinkedIn, TikTok, Snapchat, X, Facebook, Instagram, Google Ads, Meta Ads, or similar platforms, we store OAuth tokens and account identifiers needed to publish or manage campaigns on your behalf.",
+      "Tokens are stored server-side, not in client JavaScript. Scopes should be limited to what the feature needs. You can disconnect an integration; we then stop using the token. You remain responsible for the security of the connected ad accounts and for who you invite into your MarketLoopAI organization.",
+    ],
+  },
+  {
+    id: "payments",
+    heading: "8. Payments",
+    content: [
+      "Card data is handled by Stripe. We store customer and subscription identifiers, not full card numbers. Webhooks are verified with Stripe signatures.",
     ],
   },
   {
     id: "api-security",
-    heading: "API Security",
+    heading: "9. Application and API security",
     content: [
-      "Our API routes validate all input with schema validation (Zod) before processing, and sensitive operations use server-only credentials that are never exposed to the browser.",
+      "API routes validate input with schema validation (Zod) before processing. Secrets and service-role keys stay on the server. Admin routes require an authenticated, authorized user. Rate limits and credit reservation reduce abuse of generation capacity.",
     ],
   },
   {
-    id: "data-backup",
-    heading: "Data Backup",
+    id: "backups",
+    heading: "10. Backups and availability",
     content: [
-      "Our database provider performs regular automated backups as part of its managed service. We recommend reviewing our provider's specific backup and disaster recovery documentation for details.",
+      "Managed database backups are provided by our database vendor on their schedule. Object storage durability follows the provider's design. Generation capacity depends on GPU availability; jobs may queue. We monitor errors and uptime as the Service scales.",
     ],
   },
   {
     id: "incident-response",
-    heading: "Incident Response",
+    heading: "11. Incident response",
     content: [
-      "In the event of a confirmed security incident affecting personal data, we will investigate promptly and notify affected users and, where legally required, relevant authorities without undue delay.",
+      "If we confirm a security incident that affects personal data or Customer Content, we will investigate, contain, and notify affected customers and, where legally required, authorities without undue delay.",
     ],
   },
   {
     id: "vulnerability-reporting",
-    heading: "Vulnerability Reporting",
+    heading: "12. Vulnerability reporting",
     content: [
-      "If you believe you've found a security vulnerability in our site or services, please report it to security@marketloopai.com with enough detail to reproduce the issue.",
+      "If you believe you found a vulnerability, email security@marketloopai.com with enough detail to reproduce it. Do not access or modify data beyond what is needed to demonstrate the issue, and do not run destructive tests against production.",
     ],
   },
   {
     id: "responsible-disclosure",
-    heading: "Responsible Disclosure",
+    heading: "13. Responsible disclosure",
     content: [
-      "We ask that you give us reasonable time to investigate and address a reported issue before public disclosure, and that you avoid accessing or modifying data beyond what's needed to demonstrate the issue.",
+      "Give us reasonable time to investigate and fix a reported issue before public disclosure. We will not pursue legal action against researchers who act in good faith, stay within this policy, and do not harm users or the Service.",
     ],
   },
   {
     id: "security-contact",
-    heading: "Security Contact",
-    content: ["Reach our team directly at security@marketloopai.com."],
+    heading: "14. Contact",
+    content: [
+      "Security: security@marketloopai.com. Privacy: privacy@marketloopai.com. The full legal suite is at marketloopai.com/legal.",
+    ],
   },
 ];
 
@@ -129,7 +166,7 @@ export default async function SecurityPage() {
       eyebrowKey="security.pagehero.eyebrow"
       title={getText(content, "security.pagehero.title", "Security")}
       titleKey="security.pagehero.title"
-      lastUpdated="July 20, 2026"
+      lastUpdated={LEGAL_LAST_UPDATED}
       sections={buildSections(content)}
     />
   );

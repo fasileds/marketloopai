@@ -18,9 +18,20 @@ const STATIC_ROUTES = [
   { path: "/referral", priority: 0.4, changeFrequency: "daily" as const },
   { path: "/security", priority: 0.3, changeFrequency: "yearly" as const },
   { path: "/trust", priority: 0.3, changeFrequency: "yearly" as const },
+  { path: "/legal", priority: 0.3, changeFrequency: "yearly" as const },
   { path: "/privacy", priority: 0.2, changeFrequency: "yearly" as const },
   { path: "/terms", priority: 0.2, changeFrequency: "yearly" as const },
+  { path: "/acceptable-use", priority: 0.2, changeFrequency: "yearly" as const },
   { path: "/cookies", priority: 0.2, changeFrequency: "yearly" as const },
+  { path: "/dpa", priority: 0.2, changeFrequency: "yearly" as const },
+  { path: "/subprocessors", priority: 0.2, changeFrequency: "yearly" as const },
+  { path: "/ai", priority: 0.2, changeFrequency: "yearly" as const },
+  { path: "/copyright", priority: 0.2, changeFrequency: "yearly" as const },
+  { path: "/refunds", priority: 0.2, changeFrequency: "yearly" as const },
+  { path: "/referral-terms", priority: 0.2, changeFrequency: "yearly" as const },
+  { path: "/platform-integrations", priority: 0.3, changeFrequency: "yearly" as const },
+  { path: "/data-deletion", priority: 0.3, changeFrequency: "yearly" as const },
+  { path: "/google-api", priority: 0.3, changeFrequency: "yearly" as const },
 ];
 
 async function getBlogSlugs(): Promise<{ slug: string; updatedAt: string }[]> {

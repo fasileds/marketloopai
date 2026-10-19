@@ -13,9 +13,10 @@ import { EditableHeading } from "@/components/editing/editable-heading";
 import { EditableText } from "@/components/editing/editable-text";
 import { PageHero } from "@/components/layout/page-hero";
 import { getSiteContent, getText } from "@/lib/content/get-site-content";
+import { LEGAL_DOCUMENTS } from "@/lib/legal/constants";
 
 const DESCRIPTION =
-  "How MarketLoopAI approaches security, privacy, reliability, and compliance readiness.";
+  "How MarketLoopAI protects accounts, AI video and creative, campaign data, and connected ad platforms across the SaaS.";
 
 export const metadata: Metadata = {
   title: "Trust Center",
@@ -37,47 +38,77 @@ export const metadata: Metadata = {
 const PILLARS = [
   {
     title: "Security",
-    description: "TLS encryption in transit, database-level row security, and server-only credentials for sensitive operations.",
+    description:
+      "TLS in transit, encrypted storage, signed URLs for private media, and server-only secrets for generation, billing, and platform tokens.",
     icon: ShieldCheck,
     href: "/security",
   },
   {
     title: "Privacy",
-    description: "Clear data handling practices, minimal collection, and user rights to access, export, or delete your data.",
+    description:
+      "We process prompts, videos, campaigns, and ad-account data to run the product — not to sell it. You can request access, export, or deletion as described in the Privacy Policy.",
     icon: UserCheck,
     href: "/privacy",
   },
   {
-    title: "Data Protection",
-    description: "Row Level Security policies restrict data access at the database layer, not just in application code.",
+    title: "Tenant isolation",
+    description:
+      "Workspaces are isolated with database row-level security and API authorization so one organization cannot read another's creative or campaigns.",
     icon: Lock,
     href: "/security",
   },
   {
     title: "Infrastructure",
-    description: "Built on Vercel and Supabase — established providers with their own dedicated security and reliability programs.",
+    description:
+      "Web app on Vercel, data and auth on Supabase, payments on Stripe, and GPU workers for video generation that receive only the job they need to run.",
     icon: Database,
     href: "/security",
   },
   {
     title: "Reliability",
-    description: "Designed for high availability, with monitoring and incident response practices that scale as we grow.",
+    description:
+      "Job queues, credit reservation, monitoring, and incident response so generation and publishing can fail safely rather than silently.",
     icon: Gauge,
     href: "/security",
   },
   {
     title: "Compliance readiness",
-    description: "Built with GDPR and CCPA principles in mind from day one, with a roadmap toward formal certifications.",
+    description:
+      "Practices aligned with GDPR and CCPA for account, waitlist, and Customer Content, with a roadmap toward formal certifications as we scale.",
     icon: Building2,
     href: "#compliance",
   },
 ];
 
 const COMPLIANCE = [
-  { name: "GDPR", status: "Aligned", description: "Data handling practices follow GDPR principles for EEA/UK users." },
-  { name: "CCPA", status: "Aligned", description: "California residents' rights to know, delete, and opt out are supported." },
-  { name: "SOC 2", status: "Planned", description: "Formal SOC 2 audit is on our roadmap as we approach general availability." },
-  { name: "ISO 27001", status: "Planned", description: "ISO 27001 certification is on our roadmap for future evaluation." },
+  {
+    name: "GDPR",
+    status: "Aligned",
+    description:
+      "Contract, legitimate interests, and consent bases as described in the Privacy Policy, including AI job payloads and connected-platform data.",
+  },
+  {
+    name: "CCPA",
+    status: "Aligned",
+    description:
+      "California rights to know, delete, correct, and opt out of sale or sharing. We do not sell personal information.",
+  },
+  {
+    name: "SOC 2",
+    status: "Planned",
+    description: "A formal SOC 2 Type II audit is on the roadmap as the SaaS and customer base mature.",
+  },
+  {
+    name: "ISO 27001",
+    status: "Planned",
+    description: "ISO 27001 is on the roadmap for future evaluation; we do not claim this certification today.",
+  },
+  {
+    name: "EU AI Act",
+    status: "Aligned",
+    description:
+      "We treat customers as deployers of AI creative tools, require human review, and support synthetic-media transparency as described in the AI Policy. We do not claim high-risk certification.",
+  },
 ] as const;
 
 export default async function TrustPage() {
@@ -91,13 +122,13 @@ export default async function TrustPage() {
         title={getText(
           content,
           "trust.pagehero.title",
-          "Built to be trusted with your data",
+          "Built to be trusted with your creative and campaigns",
         )}
         titleKey="trust.pagehero.title"
         description={getText(
           content,
           "trust.pagehero.description",
-          "We're pre-launch, but security and privacy are foundational — not an afterthought we'll bolt on later.",
+          "MarketLoopAI is a SaaS for AI video generation and ad campaign management. Security, privacy, and tenant isolation apply to the whole product — not only the public website.",
         )}
         descriptionKey="trust.pagehero.description"
       />
@@ -181,6 +212,34 @@ export default async function TrustPage() {
                   {item.status}
                 </span>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[100rem]">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Legal documents</h2>
+            <p className="mt-4 text-muted-foreground">
+              Terms, privacy, the DPA, and related policies apply to the whole SaaS — not only this
+              site. See the{" "}
+              <Link href="/legal" className="text-foreground underline underline-offset-2">
+                legal center
+              </Link>
+              .
+            </p>
+          </div>
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {LEGAL_DOCUMENTS.filter((doc) => doc.href !== "/trust").map((doc) => (
+              <Link
+                key={doc.href}
+                href={doc.href}
+                className="glass rounded-2xl px-5 py-4 text-sm transition-colors hover:text-foreground"
+              >
+                <span className="font-medium text-foreground">{doc.title}</span>
+                <span className="mt-1 block text-muted-foreground">{doc.description}</span>
+              </Link>
             ))}
           </div>
         </div>

@@ -99,7 +99,7 @@ export default async function RootLayout({
     messagePrefix: getText(
       content,
       "cookiebanner.message.prefix",
-      "We use cookies to run our site, understand usage, and improve MarketLoopAI. See our",
+      "We use cookies to run MarketLoopAI (website and app), keep you signed in, understand usage, and improve the product. See our",
     ),
     messageSuffix: getText(content, "cookiebanner.message.suffix", "for details."),
     cookiePolicyLinkLabel: getText(

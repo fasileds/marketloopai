@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 
 import { LegalPage, type LegalSection } from "@/components/legal/legal-page";
 import { getSiteContent, getText, type SiteContentMap } from "@/lib/content/get-site-content";
+import { LEGAL_LAST_UPDATED } from "@/lib/legal/constants";
 
-const DESCRIPTION = "How MarketLoopAI uses cookies and similar technologies.";
+const DESCRIPTION =
+  "How MarketLoopAI uses cookies and similar technologies on the marketing site and in the SaaS application, including authentication, analytics, and connected-platform features.";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
@@ -28,72 +30,112 @@ const RAW_SECTIONS: {
   content: (string | { list: string[] })[];
 }[] = [
   {
-    id: "what-are-cookies",
-    heading: "What Cookies Are",
+    id: "scope",
+    heading: "1. Scope",
     content: [
-      "Cookies are small text files placed on your device when you visit a website. They help sites remember information about your visit, such as preferences and session state.",
+      "This Cookie Policy explains how MarketLoopAI uses cookies and similar technologies (local storage, session storage, pixels, and SDKs) on marketloopai.com and in the MarketLoopAI application (together, the \"Service\").",
+      "It applies to visitors, waitlist signups, account holders, and organization members. It should be read with our Privacy Policy and Terms of Service. In the EEA and UK, non-essential cookies are set only with consent under the ePrivacy Directive / PECR, except where an exemption applies.",
     ],
   },
   {
-    id: "types-of-cookies",
-    heading: "Types of Cookies Used",
+    id: "what-cookies",
+    heading: "2. What cookies and similar technologies are",
     content: [
-      "We use four categories of cookies, which you can control via the cookie consent banner: Essential, Analytics, Marketing, and Preference (Functional).",
+      "Cookies are small text files stored on your device. Similar technologies store or read identifiers in the browser or app so we can keep you signed in, remember preferences, measure usage, and (with consent where required) support marketing.",
     ],
   },
   {
-    id: "essential-cookies",
-    heading: "Essential Cookies",
+    id: "categories",
+    heading: "3. Categories we use",
     content: [
-      "Required for the site to function, such as remembering your cookie preferences and maintaining basic security. These can't be disabled.",
+      "We group cookies into Essential, Analytics, Marketing, and Preference (Functional). You can control non-essential categories in the cookie banner. Your choice is stored in your browser (typically local storage) so we can honor it on later visits from that device.",
     ],
   },
   {
-    id: "analytics-cookies",
-    heading: "Analytics Cookies",
+    id: "essential",
+    heading: "4. Essential cookies",
     content: [
-      "Help us understand how visitors use our site (pages viewed, time on site, referral source) so we can improve it. Only set with your consent.",
+      "These are required to operate the Service securely. They cannot be switched off in the banner. They include:",
+      {
+        list: [
+          "Cookie-consent record so we know which categories you allowed",
+          "Authentication and session cookies (for example Supabase Auth) so you stay signed in",
+          "Security, CSRF, and load-balancing cookies",
+          "Temporary state needed to complete Google sign-in, magic-link login, or a payment return from Stripe",
+        ],
+      },
+      "Blocking essential cookies in your browser may prevent sign-in, billing, or job submission.",
     ],
   },
   {
-    id: "marketing-cookies",
-    heading: "Marketing Cookies",
+    id: "analytics",
+    heading: "5. Analytics cookies",
     content: [
-      "Used to measure the effectiveness of our marketing and, in the future, to personalize content or ads. Only set with your consent.",
+      "With consent where required, we use analytics cookies and similar tools to understand how the marketing site and the application are used: pages and features viewed, referral source, approximate location from IP, device type, and performance or error events.",
+      "In the application this can include product-analytics events such as generation jobs started, campaign screens opened, or settings changed. We use this to operate, debug, and improve the Service — not to sell your Customer Content.",
     ],
   },
   {
-    id: "preference-cookies",
-    heading: "Preference Cookies",
+    id: "marketing",
+    heading: "6. Marketing cookies",
     content: [
-      "Remember choices you make (such as theme preference) to provide a more personalized experience.",
+      "With consent where required, marketing cookies help us measure campaigns that promote MarketLoopAI (for example a paid ad that brought you to the site) and may support remarketing of our own product.",
+      "These cookies are about how we market MarketLoopAI. They are separate from the ad accounts you connect inside the product. Connecting Meta, Google, TikTok, Snapchat, X, or similar platforms uses OAuth and APIs under those providers' terms; that is not the same as our marketing cookies.",
     ],
   },
   {
-    id: "third-party-cookies",
-    heading: "Third-Party Cookies",
+    id: "preferences",
+    heading: "7. Preference cookies",
     content: [
-      "Some cookies may be set by third-party services we use, such as analytics providers. These are governed by the respective third party's own privacy and cookie practices.",
+      "Preference (functional) cookies remember choices such as theme, locale, dismissed notices, or last-used workspace so the Service feels consistent. Some preference storage is local to your browser and is not sent to us.",
     ],
   },
   {
-    id: "managing-cookies",
-    heading: "Managing Cookies",
+    id: "third-parties",
+    heading: "8. Third parties",
     content: [
-      "You can update your cookie preferences at any time via the cookie banner on our site. Your choice is remembered in your browser's local storage.",
+      "Cookies or similar storage may be set by processors and platforms we use, including:",
+      {
+        list: [
+          "Hosting and edge (for example Vercel)",
+          "Authentication, database, and storage (for example Supabase)",
+          "Payments (Stripe) when you open checkout or the billing portal",
+          "Email delivery (for example Resend) does not typically set browser cookies, but links in email may include tracking parameters",
+          "Identity providers such as Google if you choose \"Continue with Google\"",
+          "Social and advertising platforms you connect, which may set their own cookies when you complete OAuth or open their consoles from our app",
+        ],
+      },
+      "Those parties have their own privacy and cookie policies. We only load non-essential third-party marketing or analytics tags after you consent, where the banner applies.",
     ],
   },
   {
-    id: "browser-settings",
-    heading: "Browser Settings",
+    id: "duration",
+    heading: "9. Duration",
     content: [
-      "Most browsers let you block or delete cookies through their settings. Note that blocking essential cookies may affect site functionality.",
+      "Session cookies expire when you close the browser. Persistent cookies last for a set period (from days to up to about 13 months for analytics/marketing, unless a provider uses a different default) or until you delete them. Auth sessions may last until you sign out or the session expires.",
+    ],
+  },
+  {
+    id: "managing",
+    heading: "10. How to manage cookies",
+    content: [
+      "Use the cookie banner to accept all, reject non-essential, or save custom preferences. You can also clear site data or block cookies in your browser. Do not block essential cookies if you need to use the application. Where required, we honor Global Privacy Control (GPC) as an opt-out of sale or sharing for our marketing cookies on that browser, as described in the Privacy Policy.",
+      "If you use multiple browsers or devices, set preferences on each. Signing out does not by itself delete analytics cookies.",
+    ],
+  },
+  {
+    id: "changes",
+    heading: "11. Changes",
+    content: [
+      "We may update this Cookie Policy when our practices or providers change. The \"Last updated\" date will be revised. Material changes may be highlighted in the banner or by other notice.",
     ],
   },
   {
     id: "contact",
-    heading: "Contact Information",
-    content: ["Questions about this Cookie Policy can be sent to privacy@marketloopai.com."],
+    heading: "12. Contact",
+    content: [
+      "Questions about cookies or privacy: privacy@marketloopai.com. The full legal suite is at marketloopai.com/legal.",
+    ],
   },
 ];
 
@@ -129,7 +171,7 @@ export default async function CookiesPage() {
       eyebrowKey="cookies.pagehero.eyebrow"
       title={getText(content, "cookies.pagehero.title", "Cookie Policy")}
       titleKey="cookies.pagehero.title"
-      lastUpdated="July 20, 2026"
+      lastUpdated={LEGAL_LAST_UPDATED}
       sections={buildSections(content)}
     />
   );

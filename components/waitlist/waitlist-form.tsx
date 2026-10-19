@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { EditableText } from "@/components/editing/editable-text";
 import { Input } from "@/components/ui/input";
@@ -33,7 +35,7 @@ const DEFAULT_COPY: WaitlistFormCopy = {
   companyLabel: "Company (optional)",
   websiteLabel: "Website (optional)",
   submitLabel: "Join Waitlist",
-  disclaimer: "No spam. We'll only email you about your early access.",
+  disclaimer: "No spam. We'll email you about early access and product updates.",
   successHeading: "You're on the list",
   successSubheading: "Share your referral code to move up the list:",
 };
@@ -156,7 +158,20 @@ export function WaitlistForm({
         <EditableText contentKey="waitlistform.submit.label" value={copy.submitLabel} />
       </Button>
       <p className="text-center text-xs text-muted-foreground">
-        <EditableText contentKey="waitlistform.disclaimer" value={copy.disclaimer} />
+        <EditableText contentKey="waitlistform.disclaimer" value={copy.disclaimer} />{" "}
+        By joining you agree to our{" "}
+        <Link href="/terms" className="text-foreground underline underline-offset-2">
+          Terms of Service
+        </Link>
+        ,{" "}
+        <Link href="/privacy" className="text-foreground underline underline-offset-2">
+          Privacy Policy
+        </Link>
+        , and{" "}
+        <Link href="/acceptable-use" className="text-foreground underline underline-offset-2">
+          Acceptable Use Policy
+        </Link>
+        .
       </p>
     </form>
   );

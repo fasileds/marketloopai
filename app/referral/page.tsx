@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Trophy } from "lucide-react";
+import Link from "next/link";
 
 import { EditableText } from "@/components/editing/editable-text";
 import { PageHero } from "@/components/layout/page-hero";
@@ -110,6 +111,13 @@ export default async function ReferralPage() {
               ))}
             </ol>
           )}
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            Ranking is discretionary and has no cash value. See the{" "}
+            <Link href="/referral-terms" className="text-foreground underline underline-offset-2">
+              Referral Program Terms
+            </Link>
+            .
+          </p>
         </div>
       </section>
     </>

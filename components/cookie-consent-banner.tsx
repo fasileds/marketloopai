@@ -28,7 +28,8 @@ type CookieBannerCopy = {
 };
 
 const DEFAULT_COPY: CookieBannerCopy = {
-  messagePrefix: "We use cookies to run our site, understand usage, and improve MarketLoopAI. See our",
+  messagePrefix:
+    "We use cookies to run MarketLoopAI (website and app), keep you signed in, understand usage, and improve the product. See our",
   messageSuffix: "for details.",
   cookiePolicyLinkLabel: "Cookie Policy",
   toggleEssential: "Essential",

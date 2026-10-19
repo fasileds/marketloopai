@@ -143,7 +143,7 @@ export default async function Home() {
           disclaimer: getText(
             content,
             "waitlistform.disclaimer",
-            "No spam. We'll only email you about your early access.",
+            "No spam. We'll email you about early access and product updates.",
           ),
           successHeading: getText(content, "waitlistform.success.heading", "You're on the list"),
           successSubheading: getText(

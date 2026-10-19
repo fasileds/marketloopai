@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { PageHero } from "@/components/layout/page-hero";
 import { Integrations } from "@/components/sections/integrations";
@@ -48,6 +49,21 @@ export default async function IntegrationsPage() {
       />
       <Integrations items={items} />
 
+      <p className="mx-auto max-w-[100rem] px-4 pb-8 text-center text-sm text-muted-foreground sm:px-6 lg:px-8">
+        Connecting a platform is subject to our{" "}
+        <Link href="/platform-integrations" className="text-foreground underline underline-offset-2">
+          Platform Integrations Policy
+        </Link>{" "}
+        and{" "}
+        <Link href="/privacy" className="text-foreground underline underline-offset-2">
+          Privacy Policy
+        </Link>
+        . Delete connected data anytime via{" "}
+        <Link href="/data-deletion" className="text-foreground underline underline-offset-2">
+          User Data Deletion
+        </Link>
+        .
+      </p>
       <WaitlistCtaBand
         title={getText(content, "integrations.cta.title", "Don't see your platform? Tell us")}
         titleKey="integrations.cta.title"

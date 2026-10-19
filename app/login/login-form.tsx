@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -106,6 +108,21 @@ export function LoginForm() {
           Send magic link
         </Button>
       </form>
+      <p className="text-center text-xs text-muted-foreground">
+        By signing in you agree to our{" "}
+        <Link href="/terms" className="text-foreground underline underline-offset-2">
+          Terms of Service
+        </Link>
+        ,{" "}
+        <Link href="/privacy" className="text-foreground underline underline-offset-2">
+          Privacy Policy
+        </Link>
+        , and{" "}
+        <Link href="/acceptable-use" className="text-foreground underline underline-offset-2">
+          Acceptable Use Policy
+        </Link>
+        .
+      </p>
     </div>
   );
 }
